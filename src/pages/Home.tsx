@@ -9,10 +9,12 @@
 //import CTA from '../sections/CTA';
 //import Footer from '../components/Footer';
 
+import Header from "../components/Header";
+
 export default function Home() {
     return (
         <>
-            {/* <Header /> */}
+            <Header />
             {/* <main>
                 <Hero />
                 <QuemSomos />
@@ -24,7 +26,6 @@ export default function Home() {
                 <CTA />
             </main>
             <Footer /> */}
-            <div>Home Page</div>
         </>
     );
 }
