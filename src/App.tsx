@@ -2,7 +2,6 @@ import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 //import Contato from './pages/Contato';
 //import Reserva from './pages/Reserva';
-import '@fontsource/roboto';
 
 function App() {
   return (
