@@ -1,13 +1,22 @@
 import type { ReactNode } from "react"
 import IdeasSvg from "../assets/quemsomos_1.svg"
 import PeopleSvg from "../assets/quemsomos_2.svg"
+import CodeVideo from "../assets/code_video.mp4"
+import { VideoPlayer } from "../components/VideoPlayer"
 
-function SectionRow({ isReversed, children, image, shouldImageHide }: {
-    isReversed?: boolean,
-    children: ReactNode,
+export type SectionRowAttachmentProperties = 
+    | { image: string, video?: never }
+    | { image?: never, video: string }
+
+export type SectionRowProperties = SectionRowAttachmentProperties & {
+    isReversed?: boolean
+    children: ReactNode
     shouldImageHide?: boolean
-    image: string
-}) {
+    image?: string
+    video?: string
+}
+
+function SectionRow({ isReversed, children, image, video, shouldImageHide }: SectionRowProperties) {
     return (
         <div className={`
             w-full
@@ -19,15 +28,21 @@ s        `}>
             >
                 <p className="text-center sm:text-xl">{ children }</p>
             </div>
-            <img
-                src={ image }
-                alt={ image } 
-                className={`
-                    w-100 h-100 rounded-lg
-                    ${ shouldImageHide ? "hidden" : "block"}
-                    md:block
-                `}
-            />
+            { image ? (
+                <img
+                    src={ image }
+                    alt={ image } 
+                    className={`
+                        w-100 h-100 rounded-lg
+                        ${ shouldImageHide ? "hidden" : "block"}
+                        md:block
+                    `}
+                />
+            ) : (
+                <VideoPlayer 
+                    video={ video }
+                />
+            )}
         </div>
     )
 }
@@ -44,7 +59,7 @@ function QuemSomosSection() {
             <h1 className="text-4xl font-bold text-accent pb-5">Quem somos nós?</h1>
             <SectionRow
                 isReversed={false}
-                image={ IdeasSvg }
+                video={ CodeVideo }
             >
                 A <Highlight>CODE[]</Highlight> é a Empresa Júnior de Ciência da Computação da Dom Helder, formada por estudantes apaixonados por tecnologia e impacto social. Seu propósito é conectar academia e mercado, desenvolvendo soluções tecnológicas reais que fortalecem as habilidades técnicas e profissionais dos membros.
             </SectionRow>
