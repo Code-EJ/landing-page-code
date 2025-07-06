@@ -1,1 +1,9 @@
 @import "tailwindcss";
+
+@theme {
+  --color-mint-500: oklch(0.72 0.11 178);
+  --color-lightpurple: #F0EAF8;
+  --color-turquesa: #2A8C82;
+  --color-lightturquesa: #3ed6c7;
+  
+}
