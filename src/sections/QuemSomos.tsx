@@ -2,16 +2,17 @@ import type { ReactNode } from "react"
 import IdeasSvg from "../assets/quemsomos_1.svg"
 import PeopleSvg from "../assets/quemsomos_2.svg"
 
-function SectionRow({ isReversed, children, image }: {
+function SectionRow({ isReversed, children, image, shouldImageHide }: {
     isReversed?: boolean,
     children: ReactNode,
+    shouldImageHide?: boolean
     image: string
 }) {
     return (
         <div className={`
             w-full
-            flex items-center flex-col-reverse justify-center gap-20
-            md:${ isReversed ? "flex-row-reverse" : "flex-row" }
+            flex items-center flex-col justify-center gap-20
+            ${ isReversed ? "md:flex-row-reverse" : "md:flex-row" }
 s        `}>
             <div
                 className="w-full sm:w-2xl flex items-center justify-center"
@@ -21,7 +22,11 @@ s        `}>
             <img
                 src={ image }
                 alt={ image } 
-                className="w-100 h-100 rounded-lg"
+                className={`
+                    w-100 h-100 rounded-lg
+                    ${ shouldImageHide ? "hidden" : "block"}
+                    md:block
+                `}
             />
         </div>
     )
@@ -35,9 +40,10 @@ function Highlight({ children }: { children: ReactNode }) {
 
 function QuemSomosSection() {
     return (
-        <div className="w-full bg-alt-bg flex flex-col justify-center items-center pt-10 gap-10">
+        <div className="w-full bg-alt-bg flex flex-col justify-center items-center pt-10 pb-10 gap-10">
             <h1 className="text-4xl font-bold text-accent pb-5">Quem somos nós?</h1>
             <SectionRow
+                isReversed={false}
                 image={ IdeasSvg }
             >
                 A <Highlight>CODE[]</Highlight> é a Empresa Júnior de Ciência da Computação da Dom Helder, formada por estudantes apaixonados por tecnologia e impacto social. Seu propósito é conectar academia e mercado, desenvolvendo soluções tecnológicas reais que fortalecem as habilidades técnicas e profissionais dos membros.
@@ -45,6 +51,7 @@ function QuemSomosSection() {
             <SectionRow 
                 isReversed={true}
                 image={ PeopleSvg }
+                shouldImageHide
             >
                 A <Highlight>CODE[]</Highlight> acredita na transformação digital e no potencial da juventude para um futuro mais eficiente e sustentável. Com uma equipe multidisciplinar, entrega mais que sistemas, desenvolve pessoas.
             </SectionRow>
