@@ -1,5 +1,4 @@
 import type { ReactNode } from "react"
-import IdeasSvg from "../assets/quemsomos_1.svg"
 import PeopleSvg from "../assets/quemsomos_2.svg"
 import CodeVideo from "../assets/code_video.mp4"
 import { VideoPlayer } from "../components/VideoPlayer"
