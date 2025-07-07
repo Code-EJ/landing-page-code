@@ -19,13 +19,13 @@ function SectionRow({ isReversed, children, image, video, shouldImageHide }: Sec
     return (
         <div className={`
             w-full
-            flex items-center flex-col justify-center gap-20
+            flex items-center flex-col justify-center gap-20 pr-10 pl-10
             ${ isReversed ? "md:flex-row-reverse" : "md:flex-row" }
 s        `}>
             <div
                 className="w-full sm:w-2xl flex items-center justify-center"
             >
-                <p className="text-center sm:text-xl">{ children }</p>
+                <p className="text-center text-xl sm:text-xl">{ children }</p>
             </div>
             { image ? (
                 <img
