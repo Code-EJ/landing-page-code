@@ -1,7 +1,7 @@
 //import Header from '../components/Header';
 //import Hero from '../sections/Hero';
 import QuemSomos from '../sections/QuemSomos';
-//import Parceiros from '../sections/Parceiros';
+import Parceiros from '../sections/Parceiros';
 //import Auditório from '../sections/Espaco';
 //import Servicos from '../sections/Servicos';
 //import ComoFunciona from '../sections/ComoFunciona';
@@ -16,9 +16,9 @@ export default function Home() {
         <>
             <Header />
             <QuemSomos />
+            <Parceiros />
             {/* <main>
                 <Hero />
-                <Parceiros />
                 <Auditorio />
                 <Servicos />
                 <ComoFunciona />
