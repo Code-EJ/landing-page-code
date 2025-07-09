@@ -1,1 +1,5 @@
 @import "tailwindcss";
+
+@theme {
+    --color-primary-button: #2A8C82;
+}
