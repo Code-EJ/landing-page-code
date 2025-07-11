@@ -31,7 +31,7 @@ function Carrossel({ carrossels, setCurrentIndex, currentIndex }: {
 
 function Texts({ title, description }: { title: string, description: string }) {
   return (
-    <>
+    <div className="2xl:pr-70 2xl:pl-70">
       <h1 className="text-3xl xl:text-4xl font-bold w text-[#1e0e62]">
         { title }
       </h1>
@@ -43,7 +43,7 @@ function Texts({ title, description }: { title: string, description: string }) {
           className="w-60 h-70 border-x-6 border-y-20 border-x-[#141414] border-y-[#2f2f2f]"
         />
       </div>
-    </>
+    </div>
   )
 }
 
@@ -51,7 +51,7 @@ export function Buttons() {
   return (
     <>
       {/* Botõeszinhos */}
-      <div className="w-full flex flex-col sm:flex-row sm:gap-3 items-center justify-center xl:justify-start">
+      <div className="w-full flex flex-col sm:flex-row sm:gap-3 items-center justify-center xl:justify-start 2xl:justify-center">
         <button className="hidden sm:block bg-[#2a8c82] p-3 pl-5 pr-5 rounded-full text-white font-bold shadow-lg cursor-pointer">Solicite um Orçamento</button>
         <button className="bg-[#2a8c82] sm:bg-transparent sm:text-neutral-600  p-3 pl-5 pr-5 rounded-full text-white font-bold shadow-lg cursor-pointer">
           Fale Conosco
