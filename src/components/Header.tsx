@@ -19,7 +19,7 @@ export default function Header() {
         <Link to="/reserva" className="hover:text-white transition">
           Alugue o Auditório
         </Link>
-        <a href="#nossos-servicos" className="hover:text-white transition">
+        <a href="/NossosServicos" className="hover:text-white transition">
           Nossos Serviços
         </a>
         <Link to="/contato" className="hover:text-white transition">
