@@ -51,7 +51,7 @@ export function Buttons() {
   return (
     <>
       {/* Botõeszinhos */}
-      <div className="w-full flex flex-col sm:flex-row sm:gap-3 items-center justify-center xl:justify-start 2xl:justify-center">
+      <div className="w-full flex flex-col 2xl:mt-5 sm:flex-row sm:gap-3 items-center justify-center xl:justify-start 2xl:pl-70">
         <button className="hidden sm:block bg-[#2a8c82] p-3 pl-5 pr-5 rounded-full text-white font-bold shadow-lg cursor-pointer">Solicite um Orçamento</button>
         <button className="bg-[#2a8c82] sm:bg-transparent sm:text-neutral-600  p-3 pl-5 pr-5 rounded-full text-white font-bold shadow-lg cursor-pointer">
           Fale Conosco
