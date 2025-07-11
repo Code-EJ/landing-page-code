@@ -1,4 +1,4 @@
-import BackButton from "./Buttons/BackButton";
+import BackButton from "../Buttons/BackButton";
 
 interface ReservaFormProps {}
 

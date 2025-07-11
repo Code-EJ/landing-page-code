@@ -10,7 +10,7 @@
 //import Footer from '../components/Footer';
 
 import Header from "../components/Header";
-import ReservaForm from "../components/ReservaForm";
+import ReservaForm from "../components/ReservaForm/ReservaForm";
 
 export default function reserva() {
   return (
