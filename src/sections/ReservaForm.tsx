@@ -1,9 +1,9 @@
 // import BackButton from "../Buttons/BackButton"
-import SubmitButton from "./SubmitButton";
-import FormHeader from "./FormHeader";
-import DadosEvento from "./DadosEvento";
-import DadosPessoais from "./DadosPessoais";
-import PoliticaDePrivacidade from "./PoliticaDePrivacidade";
+import SubmitButton from "../components/ReservaForm/SubmitButton";
+import FormHeader from "../components/ReservaForm/FormHeader";
+import DadosEvento from "../components/ReservaForm/DadosEvento";
+import DadosPessoais from "../components/ReservaForm/DadosPessoais";
+import PoliticaDePrivacidade from "../components/ReservaForm/PoliticaDePrivacidade";
 
 interface ReservaFormProps {}
 
