@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 //import Contato from './pages/Contato';
 import Reserva from "./pages/Reserva";
-import NossosServicos from "./pages/NossosServicos";
+import NossosServicos from "./sections/SecaoNossosServicos";
 
 function App() {
   return (
