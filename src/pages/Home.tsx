@@ -1,6 +1,6 @@
 //import Header from '../components/Header';
 //import Hero from '../sections/Hero';
-//import QuemSomos from '../sections/QuemSomos';
+import QuemSomos from '../sections/QuemSomos';
 //import Parceiros from '../sections/Parceiros';
 //import Auditório from '../sections/Espaco';
 //import Servicos from '../sections/Servicos';
@@ -15,9 +15,9 @@ export default function Home() {
     return (
         <>
             <Header />
+            <QuemSomos />
             {/* <main>
                 <Hero />
-                <QuemSomos />
                 <Parceiros />
                 <Auditorio />
                 <Servicos />
