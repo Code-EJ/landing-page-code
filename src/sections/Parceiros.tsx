@@ -12,14 +12,14 @@ export type ParceiroProperties = {
 
 export function ParceiroCard({ name, image }: ParceiroProperties) {
     return (
-        <div className="w-32 h-32 border border-black flex items-center justify-center cursor-pointer shadow-xl">
-            { image ?
+        <div className="w-32 h-32 flex items-center justify-center cursor-pointer shadow-xl">
+            {image ?
                 <img
                     className="w-full h-full"
-                    src={ image }
-                    alt={ name }
+                    src={image}
+                    alt={name}
                 /> :
-                <h1>{ name }</h1>
+                <h1>{name}</h1>
             }
         </div>
     )
@@ -30,10 +30,10 @@ export function ParceirosCards({ parceiros }: { parceiros: ParceiroProperties[] 
         <div
             className="grid grid-cols-2 sm:grid-cols-3 gap-5"
         >
-            { parceiros.map(({ name, image }) => {
-                return <ParceiroCard 
-                    name={ name }
-                    image={ image }
+            {parceiros.map(({ name, image }) => {
+                return <ParceiroCard
+                    name={name}
+                    image={image}
                 />
             })}
         </div>
@@ -47,7 +47,7 @@ export default function ParceirosSection() {
         >
             <h1 className="text-4xl font-bold">Nossos Parceiros</h1>
             <p className="text-xl w-xs sm:w-2xl text-center">Trabalhamos ao lado de empresas inovadoras que compartilham nossa visão de transformar o futuro com tecnologia</p>
-            <ParceirosCards 
+            <ParceirosCards
                 parceiros={[
                     { name: "Ambev", image: AmbevLogo },
                     { name: "Dom Helder", image: DomHelderLogo },
