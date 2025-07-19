@@ -28,7 +28,7 @@ export function VideoPlayer({ video }: VideoPlayerProperties) {
     return (
         <div className="border-2 shadow-xl border-[#d6d6e3] rounded-2xl">
             <VideoTitlebar />
-            <div className="w-130 h-70">
+            <div className="w-90 h-60 sm:w-110 sm:h-60 lg:w-130 lg:h-70">
                 <video
                     className="w-full h-full rounded-2xl"
                     controls
