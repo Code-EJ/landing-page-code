@@ -3,3 +3,7 @@
 @theme {
     --color-primary-button: #2A8C82;
 }
+    --color-alt-bg: #f5f5f5;
+    --color-accent: #240834;
+    --color-alt-accent: #db46e8;
+}

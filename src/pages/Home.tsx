@@ -10,14 +10,20 @@ import Hero from '../sections/Hero';
 // import Footer from '../components/Footer';
 
 export default function Home() {
-  return (
-    <>
-      <Header />
-      <main>
-        <Hero />
-        {/* Outros componentes virão depois */}
-      </main>
-      {/* <Footer /> */}
-    </>
-  );
+    return (
+        <>
+            <Header />
+            <QuemSomos />
+            <Parceiros />
+            {/* <main>
+                <Hero />
+                <Auditorio />
+                <Servicos />
+                <ComoFunciona />
+                <Diferenciais />
+                <CTA />
+            </main>
+            <Footer /> */}
+        </>
+    );
 }
