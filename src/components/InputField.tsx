@@ -52,8 +52,7 @@ const InputField: React.FC<InputFieldProps> = ({
             ) : (
                 <input
                     className={`
-            h-11
-            w-full text-sm px-4 py-2 border rounded-md bg-white text-gray-900 placeholder:text-gray-400
+            shadow-md/40 bg-lightpurple w-70 h-53 rounded-md placeholder:text-start
             ${secureTextEntry ? 'pr-10' : ''}
             ${isError ? 'border-red-500' : 'border-gray-300'}
             focus:outline-none focus:ring-2 focus:ring-primary-500
