@@ -9,6 +9,8 @@
 //import Footer from '../components/Footer';
 //import SecaoNossosServicos from "../sections/SecaoNossosServicos";
 
+import Header from "../components/Header";
+
 export default function Home() {
     return (
         <>
