@@ -1,5 +1,5 @@
+import ConfirmacaoModal from '../components/ConfirmacaoModal';
 import Header from '../components/Header';
-import Hero from '../sections/Hero';
 // import QuemSomos from '../sections/QuemSomos';
 // import Parceiros from '../sections/Parceiros';
 // import Auditorio from '../sections/Espaco';
@@ -13,11 +13,9 @@ export default function Home() {
   return (
     <>
       <Header />
+      <ConfirmacaoModal onClose={() => { }} />
       <main>
-        <Hero />
-        {/* Outros componentes virão depois */}
       </main>
-      {/* <Footer /> */}
     </>
   );
 }
