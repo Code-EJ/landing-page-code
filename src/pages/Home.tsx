@@ -10,11 +10,13 @@
 //import Footer from '../components/Footer';
 
 import Header from "../components/Header";
+import SecaoNossosServicos from "../sections/SecaoNossosServicos";
 
 export default function Home() {
     return (
         <>
             <Header />
+            <SecaoNossosServicos />
             {/* <main>
                 <Hero />
                 <QuemSomos />

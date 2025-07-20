@@ -6,8 +6,7 @@ import PhoneImage from "../SubItens/PhoneImage";
 const ServicePresencaOnline = () => {
   return (
     <section className="max-w-7xl mx-auto px-6 py-16 text-center md:text-left">
-      <ServiceTitle title="Criamos a Presença Online da Sua Empresa">
-        Huge trendy collection od web screens and components. Fully customized.
+      <ServiceTitle title="Criamos a Presença Online da Sua Empresa" children={undefined}>
       </ServiceTitle>
       <div className="flex flex-col md:flex-row justify-between items-center gap-10">
         {/* Esquerda */}
