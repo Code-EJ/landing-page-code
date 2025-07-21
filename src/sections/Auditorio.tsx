@@ -1,24 +1,36 @@
+import ImagemAuditorio1 from "../assets/auditorio/imagemAuditorio1.svg"
+import ImagemAuditorio2 from "../assets/auditorio/imagemAuditorio2.svg"
+
+
 export type CarouselProperties = {
     images: string[]
 }
 
-function CarouselImageCard({ image }: { image: string }) {
+function CarouselImage({ image }: { image?: string }) {
     return (
-        <div className="border-3 h-full min-w-50">
-            <img src={ image }/>
+        <div className="h-full w-120">
+            <img src={ image } className="h-full w-full"/>
         </div>
     )
 }
 
 function Carousel({ images }: CarouselProperties) {
     return (
-        <div className="w-150 h-90 bg-white overflow-auto">
-            <div className="flex h-full w-auto border border-red-500">
-                { images.map((image) => {
-                    return (
-                        <CarouselImageCard image={ image } />
-                    )
-                })}
+        <div className={`
+            bg-white
+            rounded-lg
+            w-130 h-90
+            overflow-x-auto
+            p-2
+        `}>
+            <div className="w-auto h-full flex">
+                <div className="flex gap-3 w-screen h-full">
+                    { images.map(((image) => {
+                        return (
+                            <CarouselImage image={ image }/>
+                        )
+                    }))}
+                </div>
             </div>
         </div>
     )
@@ -26,14 +38,14 @@ function Carousel({ images }: CarouselProperties) {
 
 export default function Auditorio() {
     return (
-        <div className="bg-[#f3f3f3] w-full pt-10 pb-10 flex gap-5 items-center justify-center flex-col">
-            <h1 className="text-3xl font-bold">Conheça nosso espaço</h1>
-            <Carousel images={[
-                "dawd",
-                "dkopawd",
-                "kdpawd",
-                "dawd"
-            ]}/>
+        <div className="bg-[#f5f5f5] p-20 flex items-center justify-center flex-col gap-5">
+            <h1 className="text-3xl font-bold">Conheça nosso Espaço</h1>
+            <Carousel 
+                images={[
+                    ImagemAuditorio1,
+                    ImagemAuditorio2
+                ]}
+            />
         </div>
     )
 }
