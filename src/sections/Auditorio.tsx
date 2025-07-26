@@ -53,6 +53,14 @@ export function QualitiesCards({ qualities }: { qualities: QualityProps }) {
     )
 }
 
+export function ButtonsRow() {
+    return (
+        <div className="w-full border-2">
+            <h1>Hello world</h1>
+        </div>
+    )
+}
+
 export default function Auditorio() {
     return (
         <div className="w-full pt-20 pb-30 flex flex-col items-center  justify-center bg-[#F5F5F5]">
@@ -63,12 +71,12 @@ export default function Auditorio() {
             <p className="text-center">
                 Nosso espaço está disponível para eventos, palestras, workshops e reuniões. Localizado dentro do Centro Universitário Dom Helder, o auditório oferece estrutura profissional, tecnologia de ponta e fácil acesso.
             </p>
-                <QualitiesCards qualities={[
-                    { image: CapacityQualityImg, description: "Capacidade para até 100 pessoas" },
-                    { image: MediaQualityImg, description: "Equipamento multimídia" },
-                    { image: AccessibilityQualityImg, description: "Acessibilidade e climatização" },
-                    { image: SupportQualityImg, description: "Suporte técnico incluso" }
-                ]}/>
+            <QualitiesCards qualities={[
+                { image: CapacityQualityImg, description: "Capacidade para até 100 pessoas" },
+                { image: MediaQualityImg, description: "Equipamento multimídia" },
+                { image: AccessibilityQualityImg, description: "Acessibilidade e climatização" },
+                { image: SupportQualityImg, description: "Suporte técnico incluso" }
+            ]}/>
         </div>
     )
 }
