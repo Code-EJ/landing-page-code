@@ -4,6 +4,10 @@ import AuditorioImgB from "../assets/auditorio/imagemAuditorio2.svg"
 import AuditorioImgC from "../assets/auditorio/imagemAuditorio3.svg"
 import AuditorioImgD from "../assets/auditorio/imagemAuditorio4.svg"
 
+import CapacityQualityImg from "../assets/auditorio/qualities/capacity.svg"
+import MediaQualityImg from "../assets/auditorio/qualities/media.svg"
+import AccessibilityQualityImg from "../assets/auditorio/qualities/accessibility.svg"
+import SupportQualityImg from "../assets/auditorio/qualities/support.svg"
 
 export type ImageSliderProps = {
     images: string[]
@@ -11,7 +15,7 @@ export type ImageSliderProps = {
 
 export function ImageSlider({ images }: ImageSliderProps) {
     return (
-        <div className="w-full pt-10 pb-10 border border-red-500 flex items-center justify-center">)
+        <div className="w-full pt-10 pb-10 flex items-center justify-center">)
             <div className="w-90 h-60 bg-white rounded-lg overflow-x-scroll flex gap-2 p-2">
             { images.map((image) => {
                 return (
@@ -23,9 +27,35 @@ export function ImageSlider({ images }: ImageSliderProps) {
     );
 }
 
+export type QualityProps = {
+    description: string
+    image: string
+}
+
+function QualityCard({ description, image }: QualityProps) {
+    return (
+        <div className="flex flex-col items-center justify-center gap-2">
+            <img src={ image } />
+            <p>{ description }</p> 
+        </div>
+    )
+}
+
+export function QualitiesCards({ qualities }: { qualities: QualityProps }) {
+    return (
+        <div className="w-full grid grid-cols-2 justify-center items-center gap-5 pr-10 pl-10 pt-15">
+        { qualities.map((quality) => {
+            return (
+                <QualityCard { ...quality }/>
+            )
+        }) } 
+        </div>
+    )
+}
+
 export default function Auditorio() {
     return (
-        <div className="w-full pt-20 pb-20 flex flex-col items-center  justify-center bg-[#F5F5F5]">
+        <div className="w-full pt-20 pb-30 flex flex-col items-center  justify-center bg-[#F5F5F5]">
             <h1 className="text-3xl font-bold text-center">Conheça nosso espaço</h1>
             <ImageSlider images={[ AuditorioImgA, AuditorioImgB ]}/>
             <h1 className="text-3xl font-bold text-center">Conheça nosso auditório moderno e alugue para seu próximo evento!</h1>
@@ -33,6 +63,12 @@ export default function Auditorio() {
             <p className="text-center">
                 Nosso espaço está disponível para eventos, palestras, workshops e reuniões. Localizado dentro do Centro Universitário Dom Helder, o auditório oferece estrutura profissional, tecnologia de ponta e fácil acesso.
             </p>
+                <QualitiesCards qualities={[
+                    { image: CapacityQualityImg, description: "Capacidade para até 100 pessoas" },
+                    { image: MediaQualityImg, description: "Equipamento multimídia" },
+                    { image: AccessibilityQualityImg, description: "Acessibilidade e climatização" },
+                    { image: SupportQualityImg, description: "Suporte técnico incluso" }
+                ]}/>
         </div>
     )
 }
