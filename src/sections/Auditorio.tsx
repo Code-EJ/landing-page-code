@@ -75,6 +75,7 @@ export function ButtonsRow() {
         <div className="w-full flex justify-center items-center gap-3 sm:pt-10 sm:gap-10">
             <PrimaryLinkButton 
                 label="Faça sua reserva"
+                to="/reserva"
                 onPress={() => {
                     return;
                 }}
