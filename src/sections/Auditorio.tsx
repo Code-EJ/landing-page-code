@@ -9,6 +9,8 @@ import MediaQualityImg from "../assets/auditorio/qualities/media.svg"
 import AccessibilityQualityImg from "../assets/auditorio/qualities/accessibility.svg"
 import SupportQualityImg from "../assets/auditorio/qualities/support.svg"
 
+import PrimaryLinkButton from "../components/Buttons/PrimaryLinkButton.tsx"
+
 export type ImageSliderProps = {
     images: string[]
 }
@@ -53,17 +55,36 @@ export function QualitiesCards({ qualities }: { qualities: QualityProps }) {
     )
 }
 
+export type TalkWithUsButtonProps = {
+    label: string
+}
+
+export function TalkWithUsButton({ label }: TalkWithUsButtonProps) {
+    return (
+        <button className="">
+            <img src=""/>
+            { label }
+        </button>
+    )
+}
+
 export function ButtonsRow() {
     return (
-        <div className="w-full border-2">
-            <h1>Hello world</h1>
+        <div className="w-full border-2 flex justify-center items-center gap-3">
+            <PrimaryLinkButton 
+                label="Faça sua reserva"
+                onPress={() => {
+                    return;
+                }}
+            />
+            <TalkWithUsButton label="Fale conosco" />
         </div>
     )
 }
 
 export default function Auditorio() {
     return (
-        <div className="w-full pt-20 pb-30 flex flex-col items-center  justify-center bg-[#F5F5F5]">
+        <div className="w-full pt-20 pb-30 flex flex-col gap-10 items-center  justify-center bg-[#F5F5F5]">
             <h1 className="text-3xl font-bold text-center">Conheça nosso espaço</h1>
             <ImageSlider images={[ AuditorioImgA, AuditorioImgB ]}/>
             <h1 className="text-3xl font-bold text-center">Conheça nosso auditório moderno e alugue para seu próximo evento!</h1>
@@ -77,6 +98,7 @@ export default function Auditorio() {
                 { image: AccessibilityQualityImg, description: "Acessibilidade e climatização" },
                 { image: SupportQualityImg, description: "Suporte técnico incluso" }
             ]}/>
+            <ButtonsRow />
         </div>
     )
 }
