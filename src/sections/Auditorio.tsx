@@ -20,7 +20,7 @@ export type ImageSliderProps = {
 export function ImageSlider({ images }: ImageSliderProps) {
     return (
         <div className="w-full pt-10 pb-10 flex items-center justify-center">)
-            <div className="w-90 h-60 bg-white rounded-lg overflow-x-scroll flex gap-2 p-2">
+            <div className="w-90 xl:w-130 xl:h-70 h-60 bg-white rounded-lg overflow-x-scroll flex gap-2 p-2">
             { images.map((image) => {
                 return (
                     <img src={ image } className="h-full w-fit"/>
@@ -40,14 +40,14 @@ function QualityCard({ description, image }: QualityProps) {
     return (
         <div className="flex flex-col items-center justify-center gap-2">
             <img src={ image } />
-            <p>{ description }</p> 
+            <p className="lg:w-40 text-center">{ description }</p> 
         </div>
     )
 }
 
 export function QualitiesCards({ qualities }: { qualities: QualityProps }) {
     return (
-        <div className="w-full grid grid-cols-2 justify-center items-center gap-5 pr-10 pl-10 pt-15">
+        <div className="w-full grid lg:flex lg:gap-5 grid-cols-2 justify-center items-center gap-5 pr-10 pl-10 pt-15">
         { qualities.map((quality) => {
             return (
                 <QualityCard { ...quality }/>
@@ -72,7 +72,7 @@ export function TalkWithUsButton({ label }: TalkWithUsButtonProps) {
 
 export function ButtonsRow() {
     return (
-        <div className="w-full border-2 flex justify-center items-center gap-3">
+        <div className="w-full flex justify-center items-center gap-3 sm:pt-10 sm:gap-10">
             <PrimaryLinkButton 
                 label="Faça sua reserva"
                 onPress={() => {
@@ -86,12 +86,12 @@ export function ButtonsRow() {
 
 export default function Auditorio() {
     return (
-        <div className="w-full pt-20 pb-30 flex flex-col gap-10 items-center  justify-center bg-[#F5F5F5]">
+            <div className="w-full pt-20 pb-30 flex pl-5 pr-5 sm:border-2 flex-col gap-10 items-center  justify-center bg-[#F5F5F5]">
             <h1 className="text-3xl font-bold text-center">Conheça nosso espaço</h1>
             <ImageSlider images={[ AuditorioImgA, AuditorioImgB ]}/>
-            <h1 className="text-3xl font-bold text-center">Conheça nosso auditório moderno e alugue para seu próximo evento!</h1>
+            <h1 className="text-3xl font-bold text-center lg:w-160">Conheça nosso auditório moderno e alugue para seu próximo evento!</h1>
             <ImageSlider images={[ AuditorioImgA, AuditorioImgB ]}/>
-            <p className="text-center">
+            <p className="text-center xl:w-200">
                 Nosso espaço está disponível para eventos, palestras, workshops e reuniões. Localizado dentro do Centro Universitário Dom Helder, o auditório oferece estrutura profissional, tecnologia de ponta e fácil acesso.
             </p>
             <QualitiesCards qualities={[
