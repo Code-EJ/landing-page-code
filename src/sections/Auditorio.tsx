@@ -1,3 +1,5 @@
+import { useState } from "react"
+
 import AuditorioImgA from "../assets/auditorio/imagemAuditorio1.svg"
 import AuditorioImgB from "../assets/auditorio/imagemAuditorio2.svg"
 
@@ -12,6 +14,7 @@ import SupportQualityImg from "../assets/auditorio/qualities/support.svg"
 import PhoneButtonSvg from "../assets/auditorio/buttons/phone.svg"
 
 import PrimaryLinkButton from "../components/Buttons/PrimaryLinkButton.tsx"
+import TelefoneModal from "../components/TelefoneModal.tsx"
 
 export type ImageSliderProps = {
     images: string[]
@@ -62,11 +65,18 @@ export type TalkWithUsButtonProps = {
 }
 
 export function TalkWithUsButton({ label }: TalkWithUsButtonProps) {
+    const [isModalOpen, setModalOpen] = useState<boolean>(false);
+
+    const toggleModal = () => setModalOpen(!isModalOpen)
+
     return (
-        <button className="flex">
+        <>
+        <TelefoneModal isOpen={ isModalOpen } onClose={ toggleModal }/>
+        <button className="flex cursor-pointer" onClick={ toggleModal }>
             <img src={ PhoneButtonSvg }/>
             <span className="break-words w-40 text-lg">{ label }</span>
         </button>
+        </>
     )
 }
 
