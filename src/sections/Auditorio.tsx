@@ -9,6 +9,8 @@ import MediaQualityImg from "../assets/auditorio/qualities/media.svg"
 import AccessibilityQualityImg from "../assets/auditorio/qualities/accessibility.svg"
 import SupportQualityImg from "../assets/auditorio/qualities/support.svg"
 
+import PhoneButtonSvg from "../assets/auditorio/buttons/phone.svg"
+
 import PrimaryLinkButton from "../components/Buttons/PrimaryLinkButton.tsx"
 
 export type ImageSliderProps = {
@@ -61,9 +63,9 @@ export type TalkWithUsButtonProps = {
 
 export function TalkWithUsButton({ label }: TalkWithUsButtonProps) {
     return (
-        <button className="">
-            <img src=""/>
-            { label }
+        <button className="flex">
+            <img src={ PhoneButtonSvg }/>
+            <span className="break-words w-40 text-lg">{ label }</span>
         </button>
     )
 }
@@ -77,7 +79,7 @@ export function ButtonsRow() {
                     return;
                 }}
             />
-            <TalkWithUsButton label="Fale conosco" />
+            <TalkWithUsButton label="Nós Ligaremos Para Você" />
         </div>
     )
 }
