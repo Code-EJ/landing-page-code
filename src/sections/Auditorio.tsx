@@ -24,11 +24,11 @@ export function ImageSlider({ images }: ImageSliderProps) {
     return (
         <div className="w-full pt-10 pb-10 flex items-center justify-center">)
             <div className="w-90 xl:w-130 xl:h-70 h-60 bg-white rounded-lg overflow-x-scroll flex gap-2 p-2">
-            { images.map((image) => {
-                return (
-                    <img src={ image } className="h-full w-fit"/>
-                )
-            })}
+                {images.map((image) => {
+                    return (
+                        <img src={image} className="h-full w-fit" />
+                    )
+                })}
             </div>
         </div>
     );
@@ -42,8 +42,8 @@ export type QualityProps = {
 function QualityCard({ description, image }: QualityProps) {
     return (
         <div className="flex flex-col items-center justify-center gap-2">
-            <img src={ image } />
-            <p className="lg:w-40 text-center">{ description }</p> 
+            <img src={image} />
+            <p className="lg:w-40 text-center">{description}</p>
         </div>
     )
 }
@@ -51,11 +51,11 @@ function QualityCard({ description, image }: QualityProps) {
 export function QualitiesCards({ qualities }: { qualities: QualityProps }) {
     return (
         <div className="w-full grid lg:flex lg:gap-5 grid-cols-2 justify-center items-center gap-5 pr-10 pl-10 pt-15">
-        { qualities.map((quality) => {
-            return (
-                <QualityCard { ...quality }/>
-            )
-        }) } 
+            {qualities.map((quality) => {
+                return (
+                    <QualityCard {...quality} />
+                )
+            })}
         </div>
     )
 }
@@ -71,11 +71,11 @@ export function TalkWithUsButton({ label }: TalkWithUsButtonProps) {
 
     return (
         <>
-        <TelefoneModal isOpen={ isModalOpen } onClose={ toggleModal }/>
-        <button className="flex cursor-pointer" onClick={ toggleModal }>
-            <img src={ PhoneButtonSvg }/>
-            <span className="break-words w-40 text-lg">{ label }</span>
-        </button>
+            <TelefoneModal isOpen={isModalOpen} onClose={toggleModal} />
+            <button className="flex cursor-pointer" onClick={toggleModal}>
+                <img src={PhoneButtonSvg} />
+                <span className="break-words w-40 text-lg">{label}</span>
+            </button>
         </>
     )
 }
@@ -83,7 +83,7 @@ export function TalkWithUsButton({ label }: TalkWithUsButtonProps) {
 export function ButtonsRow() {
     return (
         <div className="w-full flex justify-center items-center gap-3 sm:pt-10 sm:gap-10">
-            <PrimaryLinkButton 
+            <PrimaryLinkButton
                 label="Faça sua reserva"
                 to="/reserva"
                 onPress={() => {
@@ -97,11 +97,11 @@ export function ButtonsRow() {
 
 export default function Auditorio() {
     return (
-            <div className="w-full pt-20 pb-30 flex pl-5 pr-5 sm:border-2 flex-col gap-10 items-center  justify-center bg-[#F5F5F5]">
+        <div className="w-full pt-20 pb-30 flex pl-5 pr-5 sm:border-2 flex-col gap-10 items-center  justify-center bg-[#F5F5F5]">
             <h1 className="text-3xl font-bold text-center">Conheça nosso espaço</h1>
-            <ImageSlider images={[ AuditorioImgA, AuditorioImgB ]}/>
+            <ImageSlider images={[AuditorioImgA, AuditorioImgB]} />
             <h1 className="text-3xl font-bold text-center lg:w-160">Conheça nosso auditório moderno e alugue para seu próximo evento!</h1>
-            <ImageSlider images={[ AuditorioImgA, AuditorioImgB ]}/>
+            <ImageSlider images={[AuditorioImgA, AuditorioImgB]} />
             <p className="text-center xl:w-200">
                 Nosso espaço está disponível para eventos, palestras, workshops e reuniões. Localizado dentro do Centro Universitário Dom Helder, o auditório oferece estrutura profissional, tecnologia de ponta e fácil acesso.
             </p>
@@ -110,7 +110,7 @@ export default function Auditorio() {
                 { image: MediaQualityImg, description: "Equipamento multimídia" },
                 { image: AccessibilityQualityImg, description: "Acessibilidade e climatização" },
                 { image: SupportQualityImg, description: "Suporte técnico incluso" }
-            ]}/>
+            ]} />
             <ButtonsRow />
         </div>
     )
