@@ -5,7 +5,7 @@
 import Auditorio from '../sections/Auditorio';
 //import ComoFunciona from '../sections/ComoFunciona';
 //import Diferenciais from '../sections/Diferenciais';
-//import CTA from '../sections/CTA';
+import CTA from '../sections/CTA';
 //import Footer from '../components/Footer';
 //import SecaoNossosServicos from "../sections/SecaoNossosServicos";
 
@@ -16,6 +16,7 @@ export default function Home() {
         <>
             <Header />
             <Auditorio />
+            <CTA/>
         </>
     );
 }
