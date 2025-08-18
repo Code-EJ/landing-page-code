@@ -3,20 +3,21 @@
 //import QuemSomos from '../sections/QuemSomos';
 //import Parceiros from '../sections/Parceiros';
 import Auditorio from '../sections/Auditorio';
-//import ComoFunciona from '../sections/ComoFunciona';
+import ComoFunciona from '../sections/ComoFunciona';
 //import Diferenciais from '../sections/Diferenciais';
-//import CTA from '../sections/CTA';
+import CTA from '../sections/CTA';
 //import Footer from '../components/Footer';
 //import SecaoNossosServicos from "../sections/SecaoNossosServicos";
 
+
 import Header from "../components/Header";
 import Footer from '../components/Footer';
+
 
 export default function Home() {
     return (
         <>
             <Header />
-            <Auditorio />
             <Footer />
         </>
     );
