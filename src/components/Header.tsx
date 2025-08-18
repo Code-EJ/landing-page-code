@@ -26,16 +26,16 @@ export default function Header() {
         </div>
 
         <nav className="hidden md:flex space-x-10 text-[#1A0B61] font-medium text-base items-center">
-          <a href="#sobre-nos" className="hover:text-white transition">
+          <a href="#sobre-nos" className="hover:text-fuchsia-600 transition">
             Sobre Nós
           </a>
-          <Link to="/reserva" className="hover:text-white transition">
+          <Link to="/reserva" className="hover:text-fuchsia-600 transition">
             Alugue o Auditório
           </Link>
-          <a href="/NossosServicos" className="hover:text-white transition">
+          <a href="#nossos-servicos" className="hover:text-fuchsia-600 transition">
             Nossos Serviços
           </a>
-          <Link to="/contato" className="hover:text-white transition">
+          <Link to="/contato" className="hover:text-fuchsia-600 transition">
             Contate-nos
           </Link>
 
@@ -53,28 +53,28 @@ export default function Header() {
         <div className="md:hidden mt-4 px-4 flex flex-col space-y-4 text-[#1A0B61] font-medium text-base">
           <a
             href="#sobre-nos"
-            className="hover:text-white transition"
+            className="hover:text-fuchsia-600 transition"
             onClick={() => setMenuOpen(false)}
           >
             Sobre Nós
           </a>
           <Link
             to="/reserva"
-            className="hover:text-white transition"
+            className="hover:text-fuchsia-600 transition"
             onClick={() => setMenuOpen(false)}
           >
             Alugue o Auditório
           </Link>
           <a
-            href="/NossosServicos"
-            className="hover:text-white transition"
+            href="#nossos-servicos"
+            className="hover:text-fuchsia-600 transition"
             onClick={() => setMenuOpen(false)}
           >
             Nossos Serviços
           </a>
           <Link
             to="/contato"
-            className="hover:text-white transition"
+            className="hover:text-fuchsia-600 transition"
             onClick={() => setMenuOpen(false)}
           >
             Contate-nos

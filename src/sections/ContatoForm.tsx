@@ -1,15 +1,19 @@
+import { useState } from "react";
+import { send } from "@emailjs/browser";
 import DadosContato from "../components/ContatoForm/DadosContato";
 import PoliticaDePrivacidade from "../components/ReservaForm/PoliticaDePrivacidade";
-import { useState } from "react";
 import ContatoFormHeader from "../components/ContatoForm/ContatoFormHeader";
 import ContatoSubmitButton from "../components/ContatoForm/ContatoSubmitButton";
 
-interface ContatoFormProps { }
-
-export default function ContatoForm({ }: ContatoFormProps) {
+export default function ContatoForm() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
+
+  const [nome, setNome] = useState("");
+  const [email, setEmail] = useState("");
+  const [telefone, setTelefone] = useState("");
+  const [mensagem, setMensagem] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -17,11 +21,27 @@ export default function ContatoForm({ }: ContatoFormProps) {
     setError(null);
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await send(
+        "service_8f14plk",  
+        "default_template",  
+        {
+          to_email: "contato@juniorcode.com.br",
+          nome,
+          email,
+          telefone,
+          mensagem
+        },
+        "ZUTIYrrCnJDBaM_WO"
+      );
+
       setSuccess(true);
+      setNome("");
+      setEmail("");
+      setTelefone("");
+      setMensagem("");
       window.location.href = "/confirmacaoModal";
     } catch (err) {
-      setError(err instanceof Error ? err.message : "An error occurred");
+      setError(err instanceof Error ? err.message : "Ocorreu um erro");
     } finally {
       setLoading(false);
     }
@@ -34,8 +54,13 @@ export default function ContatoForm({ }: ContatoFormProps) {
           <ContatoFormHeader />
 
           <div className="flex flex-col md:flex-row gap-6">
-            <div className="w-full ">
-              <DadosContato />
+            <div className="w-full">
+              <DadosContato
+                nome={nome} setNome={setNome}
+                email={email} setEmail={setEmail}
+                telefone={telefone} setTelefone={setTelefone}
+                mensagem={mensagem} setMensagem={setMensagem}
+              />
             </div>
           </div>
 

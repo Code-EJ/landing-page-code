@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+html {
+  @apply scroll-smooth;
+}
+
 @theme {
   --color-mint-500: oklch(0.72 0.11 178);
   --color-lightpurple: #F0EAF8;

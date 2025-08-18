@@ -5,7 +5,7 @@ import Divider from "../components/Divider";
 
 const SecaoNossosServicos = () => {
   return (
-    <section className="max-w-7xl mx-auto px-6 py-16 text-center md:text-left">
+    <section id="nossos-servicos" className="max-w-7xl mx-auto px-6 py-16 text-center md:text-left">
       <ServicePresencaOnline />
       <Divider />
       <ServiceDados />

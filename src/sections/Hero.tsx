@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import TelefoneModal from "../components/TelefoneModal";
 
 import HeroImage1 from "../assets/Hero/imagemHero1.png";
 import HeroImage2 from "../assets/Hero/imagemHero2.png";
@@ -46,13 +48,22 @@ function Texts({ title, description }: { title: string; description: string }) {
   );
 }
 
-function Buttons() {
+function Buttons({ setModalOpen }: { setModalOpen: (open: boolean) => void }) {
   return (
     <div className="flex flex-col sm:flex-row gap-4">
-      <button className="bg-[#2a8c82] text-white font-bold px-6 py-3 rounded-full shadow-md">
+      {/* Redireciona para /contato */}
+      <Link
+        to="/contato"
+        className="bg-[#2a8c82] text-white font-bold px-6 py-3 rounded-full shadow-md text-center hover:bg-cyan-950 transition"
+      >
         Solicite um Orçamento
-      </button>
-      <button className="bg-transparent text-neutral-600 font-bold px-6 py-3 rounded-full shadow-md border border-[#2a8c82] sm:border-none sm:bg-[#2a8c82] sm:text-white">
+      </Link>
+
+      {/* Abre modal de telefone */}
+      <button
+        onClick={() => setModalOpen(true)}
+        className="bg-transparent text-neutral-600 font-bold px-6 py-3 rounded-full shadow-md border border-[#2a8c82] sm:border-none sm:bg-[#2a8c82] sm:text-white hover:bg-cyan-950 transition"
+      >
         Fale Conosco
       </button>
     </div>
@@ -61,6 +72,7 @@ function Buttons() {
 
 export default function HeroSection() {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [modalOpen, setModalOpen] = useState(false);
 
   const carrossels: CarrosselProperties[] = [
     {
@@ -103,7 +115,7 @@ export default function HeroSection() {
         <div className="w-full lg:w-1/2 flex flex-col gap-6 mb-10 lg:mb-0">
           <Texts title={current.title} description={current.description} />
           <div className="hidden lg:block">
-            <Buttons />
+            <Buttons setModalOpen={setModalOpen} />
           </div>
         </div>
 
@@ -135,15 +147,18 @@ export default function HeroSection() {
         </div>
 
         {/* Bolinhas + Botões */}
-        <div className="flex flex-col items-center justify-center gap-6 pt-4">
+        <div className="flex flex-col items-center justify-center gap-6 pt-4 ">
           <Carrossel
             carrossels={carrossels}
             currentIndex={currentIndex}
             setCurrentIndex={setCurrentIndex}
           />
-          <Buttons />
+          <Buttons setModalOpen={setModalOpen} />
         </div>
       </div>
+
+      {/* Modal de telefone */}
+      <TelefoneModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
     </div>
   );
 }

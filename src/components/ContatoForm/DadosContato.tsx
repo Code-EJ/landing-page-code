@@ -1,77 +1,53 @@
-import React from "react";
+interface DadosContatoProps {
+  nome: string;
+  setNome: (v: string) => void;
+  email: string;
+  setEmail: (v: string) => void;
+  telefone: string;
+  setTelefone: (v: string) => void;
+  mensagem: string;
+  setMensagem: (v: string) => void;
+}
 
-const DadosContato: React.FC = () => {
+export default function DadosContato({
+  nome, setNome,
+  email, setEmail,
+  telefone, setTelefone,
+  mensagem, setMensagem
+}: DadosContatoProps) {
   return (
-    <div className="flex flex-row justify-evenly w-full">
-      <div className="h-full gap-5 flex flex-col w-full">
-        <input
-          type="text"
-          placeholder="Nome Completo"
-          className="shadow-md/40 bg-lightpurple px-3 py-3 rounded-md text-sm placeholder:text-sm text-gray-800 placeholder-gray-500"
-          name="nome"
-          required
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          className="shadow-md/40 bg-lightpurple px-3 py-3 rounded-md text-sm placeholder:text-sm text-gray-800 placeholder-gray-500"
-          pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
-          required
-          name="email"
-        />
-        <input
-          type="tel"
-          placeholder="Telefone"
-          className="shadow-md/40 bg-lightpurple px-3 py-3 rounded-md text-sm placeholder:text-sm text-gray-800 placeholder-gray-500"
-          pattern="[0-9]{10,11}"
-          title="Digite um número de telefone válido com 10 ou 11 dígitos"
-          required
-          name="telefone"
-        />
-        <input
-          type="texto"
-          placeholder="Empresa"
-          className="shadow-md/40 bg-lightpurple px-3 py-3 rounded-md text-sm placeholder:text-sm text-gray-800 placeholder-gray-500"
-          title="Digite o nome da empresa, se aplicável."
-          required
-          name="empresa"
-        />
-        <div className="relative">
-          <select
-            className="shadow-md/40 bg-lightpurple px-3 py-3 pr-10 rounded-md text-sm text-gray-800 appearance-none w-full"
-            defaultValue=""
-            required
-            name="tipoDemanda"
-          >
-            <option value="" disabled>
-              Tipo de Demanda
-            </option>
-            <option value="suporte">Aplicativos móveis</option>
-            <option value="atualizacaoSistema">
-              Atualização e modernização de sistemas ou sites
-            </option>
-            <option value="consultoria">Análise de dados</option>
-            <option value="novoSistema">Informatizalçao da empresa</option>
-            <option value="pesquisaComputacional">
-              Pesquisa computacional
-            </option>
-            <option value="parcerias">Parcerias</option>
-            <option value="sitePessoal">Site pessoal</option>
-            <option value="siteEmpresa">Site para divulgação da empresa</option>
-            <option value="outro">Outro</option>
-          </select>
-          <div className="absolute top-1/2 right-3 -translate-y-1/2 pointer-events-none text-gray-600">
-            ▼
-          </div>
-        </div>
-        <input
-          type="text"
-          placeholder="Detalhes adicionais"
-          className="shadow-md/40 bg-lightpurple h-24 px-3 py-3 rounded-md placeholder:text-start placeholder:align-top placeholder:text-sm placeholder-gray-500 text-gray-800 w-full"
-        />
-      </div>
+    <div className="flex flex-col gap-4">
+      <input
+        type="text"
+        placeholder="Seu nome"
+        className="border px-4 py-2 rounded-md"
+        value={nome}
+        onChange={(e) => setNome(e.target.value)}
+        required
+      />
+      <input
+        type="email"
+        placeholder="Seu e-mail"
+        className="border px-4 py-2 rounded-md"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        required
+      />
+      <input
+        type="tel"
+        placeholder="Telefone"
+        className="border px-4 py-2 rounded-md"
+        value={telefone}
+        onChange={(e) => setTelefone(e.target.value)}
+        required
+      />
+      <textarea
+        placeholder="Mensagem"
+        className="border px-4 py-2 rounded-md"
+        value={mensagem}
+        onChange={(e) => setMensagem(e.target.value)}
+        required
+      />
     </div>
   );
-};
-
-export default DadosContato;
+}
