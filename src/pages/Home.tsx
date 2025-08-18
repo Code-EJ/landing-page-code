@@ -11,15 +11,14 @@ import CTA from '../sections/CTA';
 
 
 import Header from "../components/Header";
+import Footer from '../components/Footer';
 
 
 export default function Home() {
     return (
         <>
             <Header />
-            <Auditorio />
-            <CTA/>
-            <ComoFunciona/>
+            <Footer />
         </>
     );
 }
