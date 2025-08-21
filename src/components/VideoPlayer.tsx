@@ -1,5 +1,3 @@
-import { useCallback } from "react"
-
 export type VideoPlayerProperties = {
     video?: string
 }

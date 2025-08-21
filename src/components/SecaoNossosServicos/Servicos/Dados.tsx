@@ -1,15 +1,13 @@
-import React from "react";
 import ServiceItem from "../SubItens/ServiceItem";
 import ServiceTitle from "../SubItens/ServiceTitle";
-import PhoneImage from "../SubItens/PhoneImage";
 import Imagem from "../../Imagem";
 import Img1 from "../AssetsNossosServicos/img1.png";
 
 const ServiceDados = () => {
   return (
     <section className="max-w-7xl mx-auto px-6 py-16 text-center md:text-left">
-      <ServiceTitle title="Organizando e Analisando Seus Dados">
-        {/* Se houver children */}
+      <ServiceTitle title="Organizando e Analisando Seus Dados" children={undefined}>
+  
       </ServiceTitle>
 
       <div className="flex flex-col items-center">

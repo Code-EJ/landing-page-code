@@ -1,6 +1,4 @@
 
-import React from 'react';
-
 const ImpactfulCTA = () => {
   return (
     <section className="bg-gradient-to-r from-purple-600 to-indigo-700 shadow-lg  p-8 my-10">

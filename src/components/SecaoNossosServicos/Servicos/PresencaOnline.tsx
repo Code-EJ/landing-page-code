@@ -1,4 +1,3 @@
-import React from "react";
 import ServiceItem from "../SubItens/ServiceItem";
 import ServiceTitle from "../SubItens/ServiceTitle";
 import PhoneImage from "../SubItens/PhoneImage";

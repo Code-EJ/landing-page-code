@@ -1,4 +1,3 @@
-import React from "react";
 import { Shield, Mail, Phone, Building2, FileText, ScrollText } from "lucide-react";
 
 const NOME_DA_EMPRESA = "Code Soluções em Tecnologia Júnior";

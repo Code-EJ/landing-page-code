@@ -3,8 +3,6 @@ import { useState } from "react"
 import AuditorioImgA from "../assets/auditorio/imagemAuditorio1.svg"
 import AuditorioImgB from "../assets/auditorio/imagemAuditorio2.svg"
 
-import AuditorioImgC from "../assets/auditorio/imagemAuditorio3.svg"
-import AuditorioImgD from "../assets/auditorio/imagemAuditorio4.svg"
 
 import CapacityQualityImg from "../assets/auditorio/qualities/capacity.svg"
 import MediaQualityImg from "../assets/auditorio/qualities/media.svg"
@@ -48,19 +46,19 @@ function QualityCard({ description, image }: QualityProps) {
     )
 }
 
-export function QualitiesCards({ qualities }: { qualities: QualityProps }) {
+export function QualitiesCards({ qualities }: { qualities: QualityProps[] }) {
     return (
         <div className="w-full grid lg:flex lg:gap-5 grid-cols-2 justify-center items-center gap-5 pr-10 pl-10 pt-15">
-            {qualities.map((quality) => {
+            {qualities.map((quality: QualityProps, idx: number) => {
                 return (
-                    <QualityCard {...quality} />
+                    <QualityCard key={idx} {...quality} />
                 )
             })}
         </div>
     )
 }
 
-export type TalkWithUsButtonProps = {
+type TalkWithUsButtonProps = {
     label: string
 }
 
