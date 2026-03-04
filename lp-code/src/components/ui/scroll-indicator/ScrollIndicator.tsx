@@ -1,15 +1,29 @@
 import { forwardRef } from "react"
 import { motion } from "framer-motion"
-import { cn } from "../../../lib/utils/cn"
+import { cn } from "../../../lib/cn"
 
 type ScrollIndicatorProps = {
   className?: string
   targetId?: string
   clickable?: boolean
 }
-
+/**
+ * ScrollIndicator Component
+ *
+ * Indicador visual animado de rolagem.
+ *
+ * Features:
+ * - Animação contínua via Framer Motion
+ * - Scroll suave opcional para targetId
+ * - Suporte a forwardRef
+ * - Pode ser configurado como clicável
+ *
+ * Otimização: will-change aplicado para melhorar performance
+ * de animações transform.
+ */
 export const ScrollIndicator = forwardRef<HTMLDivElement, ScrollIndicatorProps>(
   ({ className, targetId, clickable = false }, ref) => {
+    // Realiza scroll suave até o elemento alvo, se definido.
     const handleClick = () => {
       if (!targetId) return
 

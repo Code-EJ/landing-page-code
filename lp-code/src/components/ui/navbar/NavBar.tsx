@@ -1,9 +1,14 @@
-import { cn } from "../../../lib/utils/cn"
+import { cn } from "../../../lib/cn"
 
 type Props = {
   className?: string
 }
-
+/**
+ * Navbar Component
+ *
+ * Estrutura de navegação principal.
+ * Layout interno fixo com grid responsivo.
+ */
 export function Navbar({ className }: Props) {
   return (
     <nav

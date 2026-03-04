@@ -1,6 +1,6 @@
 import type { ReactNode } from "react"
 import { cardVariants, type CardVariants } from "./card.variants"
-import { cn } from "../../../lib/utils/cn"
+import { cn } from "../../../lib/cn"
 
 type Props = CardVariants & {
   icon?: ReactNode
@@ -9,7 +9,18 @@ type Props = CardVariants & {
   children?: ReactNode
   className?: string
 }
-
+/**
+ * Card Component
+ *
+ * Componente estruturado para exibição de conteúdo
+ * com suporte a:
+ * - icon opcional
+ * - title
+ * - description
+ * - children customizados
+ *
+ * Mantém separação entre estrutura e estilo (via cardVariants).
+ */
 export function Card({
   icon,
   title,

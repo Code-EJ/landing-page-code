@@ -1,9 +1,13 @@
-import { cn } from "../../../lib/utils/cn"
+import { cn } from "../../../lib/cn"
 
 type Props = {
   className?: string
 }
-
+/**
+ * Footer Component
+ *
+ * Rodapé estruturado com grid responsivo.
+ */
 export function Footer({ className }: Props) {
   return (
     <footer

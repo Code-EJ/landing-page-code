@@ -1,5 +1,9 @@
 import { FileItem } from "./FileItem"
-
+/**
+ * FileExplorer Component
+ *
+ * Dados atualmente mockados internamente.
+ */
 export function FileExplorer() {
   const files = [
     { name: "src", type: "folder" as const },
