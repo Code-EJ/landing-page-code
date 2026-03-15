@@ -1,6 +1,8 @@
 import { useRef, useState } from 'react'
 import { useGSAP } from '@gsap/react'
 import { gsap } from "gsap";
+import MotionDemo from './components/MotionDemo';
+import LaptopSection from './components/LaptopSection';
 
 gsap.registerPlugin(useGSAP);
 
@@ -65,6 +67,11 @@ const onClickGood = contextSafe(() => {
         Click
       </button>
     </div>
+    //componentes pra testes dos hooks de scroll
+    // <div>
+    //   <MotionDemo />
+    //   <LaptopSection />
+    // </div>
   )
 }
 export default App
