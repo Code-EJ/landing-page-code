@@ -108,10 +108,10 @@ export const useScrollPin = (scrubValue: number | boolean = 1) => {
 
       const tl = gsap.timeline({
         scrollTrigger: {
-          trigger: sectionRef.current,
+          trigger: triggerRef.current,
           start: "top top",
           end: "+=2000",
-          pin: true,
+          pin: sectionRef.current,
           scrub: scrubValue,
           markers: false,
         },
