@@ -51,11 +51,11 @@ const onClickGood = contextSafe(() => {
     })
   })
 
-  return (
-    <div 
-    ref={container} 
-    className="flex flex-col justify-center items-center h-screen"
-    >
+  const showTests = true; // Podes mudar para false quando quiseres esconder
+
+return (
+  <div ref={container} className="flex flex-col items-center">
+    <div className="flex flex-col justify-center items-center h-screen">
       <h1>Landing Page da Code</h1>
       <button
         ref={buttonRef}
@@ -67,11 +67,15 @@ const onClickGood = contextSafe(() => {
         Click
       </button>
     </div>
-    //componentes pra testes dos hooks de scroll
-    // <div>
-    //   <MotionDemo />
-    //   <LaptopSection />
-    // </div>
-  )
+
+    {/* Seção de testes */}
+    {showTests && (
+      <div className="w-full border-t border-gray-700 pt-20">
+        <MotionDemo />
+        <LaptopSection />
+      </div>
+    )}
+  </div>
+);
 }
 export default App
