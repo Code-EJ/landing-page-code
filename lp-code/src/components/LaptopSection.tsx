@@ -32,6 +32,12 @@ const LaptopSection: React.FC = () => {
 
   useGSAP(
     () => {
+      
+      // Verificações de segurança - null checks
+      // Se algum ref essencial não estiver pronto, não builda a timeline
+      if (!containerRef.current || !laptopRef.current || !screenRef.current) {
+        return;
+      }
 
       const mm = gsap.matchMedia();
 
