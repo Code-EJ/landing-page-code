@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import { gsap } from "gsap";
 import MotionDemo from './components/MotionDemo';
@@ -51,7 +51,9 @@ const onClickGood = contextSafe(() => {
     })
   })
 
-  const showTests = true; // Podes mudar para false quando quiseres esconder
+  
+  //'true' pra visualizar teste e 'false' pra esconder
+  const showTests = true;
 
 return (
   <div ref={container} className="flex flex-col items-center">
