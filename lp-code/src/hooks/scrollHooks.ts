@@ -12,11 +12,11 @@ gsap.registerPlugin(ScrollTrigger, useGSAP);
  * @param scrollVars Configurações opcionais para sobrescrever o comportamento do ScrollTrigger. (ex: start, end)
  * @returns Ref a ser aplicada no elemento HTML
  */
-export const useScrollTrigger = (
+export const useScrollTrigger = <T extends HTMLElement = HTMLDivElement>(
   animationVars: gsap.TweenVars,
   scrollVars?: Partial<ScrollTrigger.Vars>,
 ) => {
-  const elementRef = useRef<HTMLDivElement | null>(null);
+  const elementRef = useRef<T | null>(null);
 
   useGSAP(
     () => {
@@ -30,56 +30,63 @@ export const useScrollTrigger = (
           toggleActions: "play none none reverse",
           ...scrollVars,
         },
-      });
+      }); // gsap
     },
-    { scope: elementRef },
-  );
+    { 
+      scope: elementRef,
+      dependencies: [animationVars, scrollVars]
+    }, // useGSAP function
+  ); // useGSAP
 
   return elementRef;
-};
+}; // hook
 
 
 
 /**
  * Hook para animação em cascata (stagger) de múltiplos elementos filhos
+ * @param containerRef Ref do container pai que engloba os itens a serem animados
  * @param selector Seletor CSS para os itens filhos (ex: ".card")
- * @param animationVars Configurações de animação para cada item
- * @param staggerAmount Delay entre cada item (default: 0.15)
+ * @param fromVars Configurações de animação inicial (ex: opacity: 0, y: 50)
+ * @param toVars Configurações de animação final (ex: opacity: 1, y: 0)
  * @param scrollVars Configurações opcionais para o ScrollTrigger
  * @returns Ref a ser aplicada no container pai
+ * 
+ * @description Este hook é ideal para criar animações em cascata (stagger) onde múltiplos elementos filhos são animados sequencialmente à medida que entram na viewport. Ele utiliza o poder do GSAP para controlar a animação e o ScrollTrigger para ativá-la com base no scroll. O hook é flexível, permitindo personalizar tanto as animações quanto o comportamento do ScrollTrigger conforme necessário.
+ * 
+ * @note Mudança de from para fromTo para melhor refletir a estrutura do GSAP e evitar confusão com o hook useScrollTrigger. O fromVars define o estado inicial dos elementos, enquanto o toVars define o estado final, incluindo o valor de stagger para controlar o atraso entre as animações dos itens.
+ * @note A adição
  */
-export const useStaggerScroll = (
+export const useStaggerScroll = <T extends HTMLElement = HTMLDivElement>(
+  containerRef: React.RefObject<T | null>,
   selector: string,
-  animationVars: gsap.TweenVars,
-  staggerAmount: number = 0.15,
+  fromVars: gsap.TweenVars,
+  toVars: gsap.TweenVars,
   scrollVars?: Partial<ScrollTrigger.Vars>,
 ) => {
-  const containerRef = useRef<HTMLDivElement | null>(null);
-
   useGSAP(
     () => {
-      if (!containerRef.current) return;
-
-      const targets = containerRef.current.querySelectorAll(selector);
-
-      if (targets.length > 0) {
-        gsap.from(targets, {
-          ...animationVars,
-          stagger: staggerAmount,
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: "top 80%",
-            toggleActions: "play none none reverse",
-            ...scrollVars,
-          },
-        });
-      }
-    },
-    { scope: containerRef },
-  );
-
-  return containerRef;
-};
+      gsap.fromTo(
+        selector,
+        fromVars, 
+        {
+        ...toVars,
+        stagger: toVars.stagger ?? 0.15,
+        overwrite: "auto", // overwrite garante que a animação seja reiniciada corretamente ao entrar/voltar à viewport com o scroll
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 80%",
+          toggleActions: "play none none reverse",
+          ...scrollVars,
+        },
+      }); // gsap
+    }, // useGSAP function
+    {
+      scope: containerRef, 
+      dependencies : [selector, fromVars, toVars, scrollVars]
+    }
+  );  // useGSAP
+}; // hook
 
 
 /**
@@ -88,10 +95,10 @@ export const useStaggerScroll = (
  * @param scrollVars - (Opcional) Configurações do ScrollTrigger
  * @returns containerRef e timelineRef (tl)
  */
-export const useScrollTimeline = (
+export const useScrollTimeline = <T extends HTMLElement = HTMLDivElement>(
   scrollVars?: Partial<ScrollTrigger.Vars>,
 ) => {
-  const containerRef = useRef<HTMLDivElement | null>(null);
+  const containerRef = useRef<T | null>(null);
   const tl = useRef<gsap.core.Timeline | null>(null);
 
   useGSAP(
@@ -104,14 +111,17 @@ export const useScrollTimeline = (
           start: "top 80%",
           toggleActions: "play none none reverse",
           ...scrollVars,
-        },
-      });
+        }, // scrollTrigger
+      }); // gsap.timeline
+    }, // useGSAP function
+    {
+      scope: containerRef,
+      dependencies: [scrollVars]
     },
-    { scope: containerRef },
-  );
+  ); // useGSAP
 
   return { containerRef, tl };
-};
+}; // hook
 
 
 
@@ -121,32 +131,38 @@ export const useScrollTimeline = (
  * @param scrollVars Configurações adicionais de ScrollTrigger.
  * @returns Objeto com as refs e a timeline gerada.
  */
-export const useScrollPin = (
+export const useScrollPin = <
+  Section extends HTMLElement = HTMLDivElement,
+  Trigger extends HTMLElement = HTMLDivElement
+  >(
   scrubValue: number | boolean = 1,
   scrollVars?: Partial<ScrollTrigger.Vars>,
 ) => {
-  const sectionRef = useRef<HTMLDivElement | null>(null);
-  const triggerRef = useRef<HTMLDivElement | null>(null);
+  const sectionRef = useRef<Section | null>(null);
+  const triggerRef = useRef<Trigger | null>(null);
   const tl = useRef<gsap.core.Timeline | null>(null);
 
   useGSAP(
     () => {
-      if (!sectionRef.current) return;
+      if (!sectionRef.current || !triggerRef.current) return;
 
       tl.current = gsap.timeline({
         scrollTrigger: {
           trigger: triggerRef.current,
           start: "top top",
-          end: "+=2000",
+          end: scrollVars?.end ?? "+=2000",
           pin: sectionRef.current,
           scrub: scrubValue,
           markers: false,
           ...scrollVars,
-        },
-      });
-    },
-    { scope: sectionRef },
-  );
+        }, // scrollTrigger
+      }); // gsap.timeline
+    }, // useGSAP function
+    {
+      scope: sectionRef,
+      dependencies: [scrubValue, scrollVars]
+  },
+  ); // useGSAP
 
   return { sectionRef, triggerRef, tl };
-};
+}; // hook
