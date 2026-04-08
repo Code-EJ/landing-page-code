@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react'
 import { useGSAP } from '@gsap/react'
 import { gsap } from "gsap";
+import Carrossel from "./components/Section/Carrossel";
 
 gsap.registerPlugin(useGSAP);
 
@@ -55,6 +56,8 @@ const onClickGood = contextSafe(() => {
     className="flex flex-col justify-center items-center h-screen"
     >
       <h1>Landing Page da Code</h1>
+      // Teste do carrocel.
+        <Carrossel />
       <button
         ref={buttonRef}
         onClick={onClickGood}
@@ -64,6 +67,7 @@ const onClickGood = contextSafe(() => {
       >
         Click
       </button>
+      
     </div>
   )
 }
