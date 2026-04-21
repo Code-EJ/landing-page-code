@@ -1,7 +1,7 @@
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import { gsap } from "gsap";
-import Carrossel from "./components/Section/Carrossel";
+import Carousel from './components/Carousel/carousel';
 
 gsap.registerPlugin(useGSAP);
 
@@ -50,14 +50,29 @@ const onClickGood = contextSafe(() => {
     })
   })
 
+  const img1 = 'https://media.istockphoto.com/id/814423752/photo/eye-of-model-with-colorful-art-make-up-close-up.jpg?s=612x612&w=0&k=20&c=l15OdMWjgCKycMMShP8UK94ELVlEGvt7GmB_esHWPYE='
+  const img2 = 'https://images.ctfassets.net/hrltx12pl8hq/28ECAQiPJZ78hxatLTa7Ts/2f695d869736ae3b0de3e56ceaca3958/free-nature-images.jpg?fit=fill&w=1200&h=630'
+  const img3 = 'https://img.freepik.com/free-photo/closeup-shot-beautiful-butterfly-with-interesting-textures-orange-petaled-flower_181624-7640.jpg?semt=ais_hybrid&w=740&q=80'
+
+  const cadeirasData = [
+  { src: img1, alt: "Cadeira ergonômica preta com apoio lombar" },
+  { src: img2, alt: "Cadeira gamer branca e vermelha" },
+  { src: img3, alt: "Cadeira de escritório executiva em couro" }
+];
+
   return (
     <div 
     ref={container} 
     className="flex flex-col justify-center items-center h-screen"
     >
       <h1>Landing Page da Code</h1>
-      // Teste do carrocel.
-        <Carrossel />
+      {/* Teste do carousel. */}
+      <Carousel
+        images={cadeirasData}
+        autoPlay={false}
+        interval={5000}
+        onIndexChange={(newIndex) => console.log("Imagem atual:", newIndex)}
+      />
       <button
         ref={buttonRef}
         onClick={onClickGood}
