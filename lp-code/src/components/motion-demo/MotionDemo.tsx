@@ -4,7 +4,7 @@ import {
   useScrollTrigger,
   useStaggerScroll,
   useScrollTimeline,
-} from "../hooks/scrollHooks";
+} from "../../hooks/scrollHooks";
 import { useGSAP } from "@gsap/react";
 
 /**
@@ -29,9 +29,12 @@ import { useGSAP } from "@gsap/react";
  * - Escopo controlado para evitar conflitos de seleção
  */
 const MotionDemo: React.FC = () => {
-  
   // Animação Simples (Fade + Slide)
-  const singleRef = useScrollTrigger<HTMLElement>({ opacity: 0, x: -100, duration: 1 });
+  const singleRef = useScrollTrigger<HTMLElement>({
+    opacity: 0,
+    x: -100,
+    duration: 1,
+  });
 
   // Cartões para Animação em Cascata (Stagger)
   const cardsRef = useRef<HTMLDivElement>(null);
@@ -39,7 +42,7 @@ const MotionDemo: React.FC = () => {
   // Stagger (cards em cascata)
   useStaggerScroll(
     cardsRef,
-    ".card-item", 
+    ".card-item",
     // Estado inicial: invisível e deslocado para baixo
     {
       opacity: 0,
@@ -53,8 +56,8 @@ const MotionDemo: React.FC = () => {
       rotation: 0,
       duration: 0.6,
       stagger: 0.15,
-    }
-);
+    },
+  );
 
   // Timeline orquestrada
   const { containerRef, tl } = useScrollTimeline<HTMLElement>();
@@ -65,15 +68,15 @@ const MotionDemo: React.FC = () => {
 
       tl.current
         .from(".item-1", { opacity: 0, y: -30, duration: 0.6 })
-        .from(".item-2", { scaleX: 0,transformOrigin: "left center", duration: 0.8 }, "-=0.2")
+        .from(
+          ".item-2",
+          { scaleX: 0, transformOrigin: "left center", duration: 0.8 },
+          "-=0.2",
+        )
         .from(".item-3", { opacity: 0, scale: 0.5, duration: 0.5 });
     },
-    { scope: containerRef }
+    { scope: containerRef },
   );
-
-  
-
-  
 
   return (
     <div className="px-4 md:px-10 py-10 space-y-[40vh] md:space-y-[50vh] bg-slate-900 text-white">
@@ -94,16 +97,17 @@ const MotionDemo: React.FC = () => {
           mx-auto
         "
       >
-        <h3 className="text-2xl md:text-3xl font-bold">
-          Animação Simples
-        </h3>
+        <h3 className="text-2xl md:text-3xl font-bold">Animação Simples</h3>
         <p className="text-sm md:text-base mt-2">
           Eu apareci deslizando da esquerda usando o hook básico.
         </p>
       </section>
 
       {/* DEMO 2: STAGGER */}
-      <section ref={cardsRef} className="max-w-4xl mx-auto will-change-transform">
+      <section
+        ref={cardsRef}
+        className="max-w-4xl mx-auto will-change-transform"
+      >
         <h3 className="text-2xl md:text-3xl font-bold mb-6 text-center">
           Efeito Stagger (Cascata)
         </h3>
@@ -115,13 +119,12 @@ const MotionDemo: React.FC = () => {
             gap-4
           "
         >
-
           {Array.from({ length: 9 }, (_, j) => {
             const base2Value = j.toString(2);
-          return (
-            <div
-              key={j}
-              className="
+            return (
+              <div
+                key={j}
+                className="
                 card-item 
                 p-6 md:p-10 
                 bg-green-900 
@@ -129,10 +132,11 @@ const MotionDemo: React.FC = () => {
                 text-center
                 font-extrabold
               "
-            >
-              Card {base2Value}
-            </div>
-          ) })}
+              >
+                Card {base2Value}
+              </div>
+            );
+          })}
         </div>
       </section>
 
