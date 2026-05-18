@@ -27,7 +27,7 @@ describe("Button component",
 
     const btn = screen.getByRole("button")
 
-    expect(btn.className).toContain("bg-blue-600")
+    expect(btn.className).toContain("bg-[#E004DD]/10")
     })
 
     /**
