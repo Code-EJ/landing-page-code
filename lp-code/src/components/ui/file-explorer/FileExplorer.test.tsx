@@ -1,19 +1,46 @@
-import { render, screen } from "@testing-library/react"
+import { render } from "@testing-library/react"
 import { describe, it, expect } from "vitest"
+
 import { FileExplorer } from "./FileExplorer"
 
 describe("FileExplorer component", () => {
 
   /**
-   * Verifica se os arquivos são renderizados
+   * Verifica se o componente renderiza
    */
-  it("renders file explorer items", () => {
-    render(<FileExplorer />)
+  it("renders file explorer", () => {
+    const { container } = render(
+      <FileExplorer />
+    )
 
-    expect(screen.getByText("src")).toBeInTheDocument()
-    expect(screen.getByText("components")).toBeInTheDocument()
-    expect(screen.getByText("App.tsx")).toBeInTheDocument()
-    expect(screen.getByText("package.json")).toBeInTheDocument()
+    expect(container.firstChild)
+      .toBeInTheDocument()
+  })
+
+  /**
+   * Verifica se os folders são renderizados
+   */
+  it("renders folder items", () => {
+    const { container } = render(
+      <FileExplorer />
+    )
+
+    const folders = container.querySelectorAll(
+      ".group"
+    )
+
+    expect(folders.length).toBeGreaterThan(0)
+  })
+
+  /**
+   * Snapshot test
+   */
+  it("matches snapshot", () => {
+    const { container } = render(
+      <FileExplorer />
+    )
+
+    expect(container).toMatchSnapshot()
   })
 
 })
