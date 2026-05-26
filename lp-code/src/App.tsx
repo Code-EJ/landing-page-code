@@ -2,6 +2,7 @@ import { useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import { gsap } from "gsap";
 import Carousel from './components/Carousel/carousel';
+import type { CarouselItem } from "./components/Carousel/types";
 
 gsap.registerPlugin(useGSAP);
 
@@ -49,32 +50,52 @@ function App() {
     });
   });
 
-  //'true' pra visualizar teste e 'false' pra esconder
+  // 'true' pra visualizar teste e 'false' pra esconder
   const showTests = true;
 
   const img1 = 'https://media.istockphoto.com/id/814423752/photo/eye-of-model-with-colorful-art-make-up-close-up.jpg?s=612x612&w=0&k=20&c=l15OdMWjgCKycMMShP8UK94ELVlEGvt7GmB_esHWPYE='
   const img2 = 'https://images.ctfassets.net/hrltx12pl8hq/28ECAQiPJZ78hxatLTa7Ts/2f695d869736ae3b0de3e56ceaca3958/free-nature-images.jpg?fit=fill&w=1200&h=630'
   const img3 = 'https://img.freepik.com/free-photo/closeup-shot-beautiful-butterfly-with-interesting-textures-orange-petaled-flower_181624-7640.jpg?semt=ais_hybrid&w=740&q=80'
 
-  const cadeirasData = [
-  { src: img1, alt: "Cadeira ergonômica preta com apoio lombar" },
-  { src: img2, alt: "Cadeira gamer branca e vermelha" },
-  { src: img3, alt: "Cadeira de escritório executiva em couro" }
-];
+  const itensDoCarrossel: CarouselItem[] = [
+    {
+      id: 1,
+      type: "image",
+      src: img1, 
+      alt: "Olho colorido"
+    },
+    {
+      id: 2,
+      type: "image",
+      src: img2, 
+      alt: "Árvore em campo"
+    },
+    {
+      id: 3,
+      type: "image",
+      src: img3, 
+      alt: "Borboleta em uma flor"
+    }
+  ];
 
   return (
     <div 
-    ref={container} 
-    className="flex flex-col justify-center items-center h-screen"
+      ref={container} 
+      className="flex flex-col justify-center items-center min-h-screen gap-8 py-10" // Adicionei gap-8 e py-10 para desgrudar o carrossel dos outros elementos
     >
-      <h1>Landing Page da Code</h1>
-      {/* Teste do carousel. */}
-      <Carousel
-        images={cadeirasData}
-        autoPlay={false}
-        interval={5000}
-        onIndexChange={(newIndex) => console.log("Imagem atual:", newIndex)}
-      />
+      <h1 className="text-3xl font-bold">Landing Page da Code</h1>
+      
+      {/* Teste do carousel condicionado à variável showTests */}
+      {showTests && (
+        <Carousel 
+          items={itensDoCarrossel} 
+          autoPlay={false} 
+          interval={3000} 
+          maxWidth="600px" 
+          height="500px"
+        />
+      )}
+
       <button
         ref={buttonRef}
         onClick={onClickGood}
@@ -84,8 +105,8 @@ function App() {
       >
         Click
       </button>
-      
     </div>
   );
 }
+
 export default App;
