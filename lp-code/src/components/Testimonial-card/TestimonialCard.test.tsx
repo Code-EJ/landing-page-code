@@ -9,7 +9,7 @@ describe('TestimonialCard Component', () => {
     authorName: 'Enzo Ribas',
   };
 
-  it('deve renderizar corretamente com todas as props completas', () => {
+  it('Deve renderizar corretamente com todas as props completas', () => {
     // 1. Arrange: Prepara a renderização do componente com todas as props
     render(
       <TestimonialCard
@@ -37,7 +37,7 @@ describe('TestimonialCard Component', () => {
     ).toBeInTheDocument();
   });
 
-  it('deve renderizar corretamente sem as props opcionais', () => {
+  it('Deve renderizar corretamente sem as props opcionais', () => {
     // 1. Arrange: Renderiza APENAS com nome e texto (props obrigatórias da Interface)
     render(<TestimonialCard {...baseProps} />);
 
@@ -56,7 +56,7 @@ describe('TestimonialCard Component', () => {
     expect(screen.getByText('ER')).toBeInTheDocument();
   });
 
-  it('deve exibir fallback (iniciais) quando a imagem do avatar falhar ao carregar (Edge Case)', () => {
+  it('Deve exibir fallback (iniciais) quando a imagem do avatar falhar ao carregar (Edge Case)', () => {
     // 1. Arrange: Renderiza com um link de imagem de propósito quebrado ou inválido
     render(
       <TestimonialCard
