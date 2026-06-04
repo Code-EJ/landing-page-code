@@ -82,6 +82,20 @@ function App() {
       // Sem avatarUrl para testar o fallback (iniciais MS)
     },
     {
+      text: " the integral of a differential form ω over the boundary ∂Ω of some orientable manifold Ω is equal to the integral of its exterior derivative dω over the whole of ⁠Ω",
+      authorName: "Sir George Stokes",
+      authorRole: "Physicist and Mathematician",
+      rating: 2,
+      avatarUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8nnHTbLUeAM2E0C5EV3W4tsKPmXe8qWrX4c5PlZ-yXAWvdERj_wkoEkUy_1tHaw-tj3rLFu2qkC9zccZnuXGUvz_sWwN6y5i4Gpr4LsrLJw&s=10",
+    },
+    {
+      text: "ASDOHASOIUDHOASD",
+      authorName: "",
+      authorRole: "CEO na Tech Solutions",
+      rating: 4,
+      // Sem avatarUrl para testar o fallback (iniciais MS)
+    },
+    {
       text: "Recomendo de olhos fechados! Layout impecável e código limpo.",
       authorName: "João Pedro",
       // Sem cargo, sem avatar e sem nota para testar a renderização mínima
@@ -122,7 +136,6 @@ function App() {
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full auto-rows-[350px]">
           {testimonialsData.map((testimonial, index) => (
-            // O componente foi feito para assumir 100% da div pai, então ele se ajusta ao Grid perfeitamente
             <TestimonialCard 
               key={index} 
               {...testimonial} 

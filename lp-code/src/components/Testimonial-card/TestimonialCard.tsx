@@ -57,7 +57,6 @@ export function TestimonialCard({
         aria-label={`Avaliação de ${normalizedRating} de 5 estrelas`}
         role="img"
       >
-        {/* Cria um array de 5 posições e faz um loop sobre ele */}
         {[...Array(5)].map((_, index) => (
           <svg
             key={index}
@@ -75,35 +74,27 @@ export function TestimonialCard({
 
   return (
     <article className={styles.card}>
-      {/* 1. Injeta a renderização das estrelas (se existirem) */}
       {renderStars()}
-
-      {/* 2. Aspas de abertura no estilo do design (oculto para a11y) */}
+      
       <div className={styles.quoteMark} aria-hidden="true">
         "
       </div>
 
-      {/* 3. Corpo principal: Texto da avaliação.
-             Possui CSS que corta o texto caso seja muito longo. */}
       <p className={styles.text}>
         {text} <span aria-hidden="true" className={styles.textInlineQuote}>"</span>
       </p>
 
       {/* 4. Rodapé: Foto/Iniciais e informações de contato */}
       <div className={styles.footer}>
-        
-        {/* Regra de renderização condicional da foto:
-            Só exibe a tag <img> se existir a prop `avatarUrl` E SE a imagem não tiver quebrado (imgError) */}
+
         {avatarUrl && !imgError ? (
           <img
             src={avatarUrl}
             alt={`Foto de perfil de ${authorName}`}
-            // Gatilho fundamental: se o link falhar (ex: erro 404), o estado vira 'true'
             onError={() => setImgError(true)}
             className={styles.avatar}
           />
         ) : (
-          // Componente de fallback (Plano B): Mostra um círculo com as iniciais do autor.
           <div
             className={styles.avatarFallback}
             aria-label={`Iniciais de ${authorName}`} // Acessibilidade para leitores de tela
@@ -116,7 +107,6 @@ export function TestimonialCard({
         <div className={styles.authorInfo}>
           <span className={styles.authorName}>{authorName}</span>
           
-          {/* Só renderiza o span de cargo se a prop `authorRole` foi fornecida */}
           {authorRole && (
             <span className={styles.authorRole}>{authorRole}</span>
           )}
