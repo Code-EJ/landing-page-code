@@ -5,6 +5,10 @@ import { Footer } from "./components/ui/footer/Footer"
 import { FileExplorer } from "./components/ui/file-explorer/FileExplorer"
 import { Container } from "./components/ui/container/Container"
 import bg from "./assets/BG.png"
+import { useRef } from 'react'
+import { useGSAP } from '@gsap/react'
+import { gsap } from "gsap";
+import Carousel from './components/Carousel/carousel';
 
 /**
  * App Root
@@ -94,7 +98,7 @@ function App() {
       {/* FOOTER */}
       <Footer />
     </div>
-  )
+  );
 }
 
 export default App
