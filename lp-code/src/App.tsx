@@ -1,91 +1,104 @@
+import { Button } from "./components/ui/button/Button"
+import { Navbar } from "./components/ui/navbar/NavBar"
+import { ScrollIndicator } from "./components/ui/scroll-indicator/ScrollIndicator"
+import { Footer } from "./components/ui/footer/Footer"
+import { FileExplorer } from "./components/ui/file-explorer/FileExplorer"
+import { Container } from "./components/ui/container/Container"
+import bg from "./assets/BG.png"
 import { useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import { gsap } from "gsap";
 import Carousel from './components/Carousel/carousel';
 
-gsap.registerPlugin(useGSAP);
-
+/**
+ * App Root
+ *
+ * - Estrutura principal da aplicação
+ * - Seções:
+ *    • Hero
+ *    • Stack de cards
+ *    • Grid de serviços (dentro do Container)
+ *    • Footer
+ */
 function App() {
-  const container = useRef<HTMLDivElement | null>(null);
-  const buttonRef = useRef<HTMLButtonElement | null>(null);
-
-  const { contextSafe } = useGSAP({ scope: container });
-
-  useGSAP(() => {
-    if (!buttonRef.current) return;
-
-    gsap.from(buttonRef.current, {
-      opacity: 0,
-      y: 30,
-      duration: 0.8,
-      ease: "power3.out",
-    });
-  }, []);
-
-  const onClickGood = contextSafe(() => {
-    if (!buttonRef.current) return;
-
-    gsap.to(buttonRef.current, {
-      rotation: "+=180",
-      duration: 0.3,
-      ease: "power2.out",
-    });
-  });
-
-  const onEnter = contextSafe((e: React.MouseEvent<HTMLButtonElement>) => {
-    gsap.to(e.currentTarget, {
-      scale: 1.25,
-      duration: 0.1,
-      ease: "power2.out",
-    });
-  });
-
-  const onLeave = contextSafe((e: React.MouseEvent<HTMLButtonElement>) => {
-    gsap.to(e.currentTarget, {
-      scale: 1,
-      duration: 0.1,
-      ease: "power2.out",
-      overwrite: "auto",
-    });
-  });
-
-  //'true' pra visualizar teste e 'false' pra esconder
-  const showTests = true;
-
-  const img1 = 'https://media.istockphoto.com/id/814423752/photo/eye-of-model-with-colorful-art-make-up-close-up.jpg?s=612x612&w=0&k=20&c=l15OdMWjgCKycMMShP8UK94ELVlEGvt7GmB_esHWPYE='
-  const img2 = 'https://images.ctfassets.net/hrltx12pl8hq/28ECAQiPJZ78hxatLTa7Ts/2f695d869736ae3b0de3e56ceaca3958/free-nature-images.jpg?fit=fill&w=1200&h=630'
-  const img3 = 'https://img.freepik.com/free-photo/closeup-shot-beautiful-butterfly-with-interesting-textures-orange-petaled-flower_181624-7640.jpg?semt=ais_hybrid&w=740&q=80'
-
-  const cadeirasData = [
-  { src: img1, alt: "Cadeira ergonômica preta com apoio lombar" },
-  { src: img2, alt: "Cadeira gamer branca e vermelha" },
-  { src: img3, alt: "Cadeira de escritório executiva em couro" }
-];
-
   return (
-    <div 
-    ref={container} 
-    className="flex flex-col justify-center items-center h-screen"
-    >
-      <h1>Landing Page da Code</h1>
-      {/* Teste do carousel. */}
-      <Carousel
-        images={cadeirasData}
-        autoPlay={false}
-        interval={5000}
-        onIndexChange={(newIndex) => console.log("Imagem atual:", newIndex)}
-      />
-      <button
-        ref={buttonRef}
-        onClick={onClickGood}
-        onMouseEnter={onEnter}
-        onMouseLeave={onLeave}
-        className="px-6 py-3 text-xl bg-purple-900 text-white rounded"
-      >
-        Click
-      </button>
+    <div className="text-white">
       
+      {/* NAVBAR FIXO */}
+      <Navbar />
+
+      {/* HERO */}
+      <section className="relative h-screen flex items-start pt-12 justify-center text-center overflow-hidden">
+        
+        {/* Background */}
+        <div className="fixed inset-0 -z-10">
+          <img
+            src={bg}
+            alt="background"
+            className="w-full h-full object-cover"
+          />
+
+          {/* Overlay escuro */}
+          <div className="absolute inset-0 bg-black/30" />
+
+          {/* Grid */}
+          <div
+            className="
+            absolute inset-0
+            bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),
+                linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)]
+            bg-[size:40px_40px]
+          "
+          />
+        </div>
+
+        {/* Conteúdo */}
+        <div className="flex flex-col items-center gap-6 px-6">
+          
+          <h1 className="text-6xl md:text-8xl font-semibold tracking-widest">
+            <span className="bg-purple-700 bg-clip-text text-transparent">
+              CODE
+            </span>
+            <span className="text-green-400">[]</span>
+          </h1>
+
+          <p className="text-2xl md:text-4xl font-semibold text-white/80 max-w-2xl">
+            Transformamos{" "}
+            <span className="text-green-400">ideias</span> em soluções{" "}
+            <span className="bg-gradient-to-r from-[#9413F6] to-[#FD0151] bg-clip-text text-transparent">
+              digitais reais
+            </span>.
+          </p>
+
+          <Button size="lg">
+            <span className="bg-clip-text font-semibold text-lg text-transparent bg-gradient-to-r from-[#9413F6] to-[#FD0151]">
+              Solicitar orçamento
+            </span>
+          </Button>
+
+        </div>
+
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-12 left-1/2 -translate-x-1/2">
+          <ScrollIndicator />
+        </div>
+      </section>
+
+      {/* SEÇÃO CARDS + SERVIÇOS */}
+      <section className="min-h-screen flex flex-col items-center justify-center gap-24">
+        {/* GRID DE SERVIÇOS DENTRO DO CONTAINER */}
+        <Container className="flex justify-center">
+          <div className="py-6">
+            <FileExplorer /> 
+          </div>
+        </Container>
+
+      </section>
+
+      {/* FOOTER */}
+      <Footer />
     </div>
   );
 }
-export default App;
+
+export default App
