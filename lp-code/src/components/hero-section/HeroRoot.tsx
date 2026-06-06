@@ -3,10 +3,9 @@ import gsap from "gsap";
 import type { HeroRootProps } from "../../types/hero.type.ts";
 import HeroImage from "./HeroImage";
 import HeroLogo from "./HeroLogo";
-import marcela from '../../assets/images/Marcela.png';
-import zeroum from '../../assets/images/ZeroUm.png';
+import fotoFundo from '../../assets/images/fundoHeroSection.png';
+import zeroum from '../../assets/images/ZeroUmHeroSection.png';
 import cadeira from '../../assets/images/cadeira1.webp';
-// lp-code\src\assets\images\cadeira1.webp
 
 export default function HeroRoot({ onAnimationComplete, className = "" }: HeroRootProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -18,11 +17,11 @@ export default function HeroRoot({ onAnimationComplete, className = "" }: HeroRo
 
     if (!logoContainer || !bgImage) return;
 
-    // Pegamos as propriedades configuradas no componente (ou definimos padrões)
+    // propriedades configuradas no componente (ou definimos padrões)
     const direction = logoContainer.getAttribute("data-direction") || "bottom";
     const durationProp = Number(logoContainer.getAttribute("data-duration")) || 1.2;
 
-    // Mapeia onde a animação deve começar com base na prop
+    // onde animação começa baseado na prop
     const startPositions: Record<string, gsap.TweenVars> = {
     bottom: { y: "100%", x: "0%" },
     top: { y: "-100%", x: "0%" },
@@ -30,20 +29,18 @@ export default function HeroRoot({ onAnimationComplete, className = "" }: HeroRo
     right: { x: "100%", y: "0%" },
     };
 
-    // 1. Configura a posição inicial baseada na prop direction do componente (simulando vindo de baixo)
-    // Para deixar dinâmico depois, faremos a leitura das props, mas vamos fixar 'bottom' de início:
+    // posição inicial do logo e do fundo
     gsap.set(logoContainer, { ...startPositions[direction], opacity: 0 });
     gsap.set(bgImage, { scale: 1.2 });
 
-    // 2. Cria a Timeline Principal (Animation Controller)
+    // Timeline Principal (Animation Controller)
     const tl = gsap.timeline({
       onComplete: () => {
-        // Quando toda a sequência acabar, avisa o React!
         if (onAnimationComplete) onAnimationComplete();
       }
     });
 
-    // 3. Sequência de Animações
+    // Sequência animações
     tl.to(bgImage, {
       scale: 1,
       duration: 2,
@@ -59,7 +56,7 @@ export default function HeroRoot({ onAnimationComplete, className = "" }: HeroRo
     .to(containerRef.current, {
       opacity: 0,
       duration: 0.8,
-      delay: 1.5, // Dá um tempo para o usuário ler o texto antes do fade out final
+      delay: 1.5,
       ease: "power2.inOut"
     });
 
@@ -82,7 +79,7 @@ export default function HeroRoot({ onAnimationComplete, className = "" }: HeroRo
       </button>
 
       <HeroImage 
-        src={cadeira} 
+        src={fotoFundo} 
         alt="Foto de Cadeira"
         pulseEffect={false} // Desativado temporariamente para não brigar com a timeline do GSAP
       />
