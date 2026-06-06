@@ -2,6 +2,7 @@ import { useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import { gsap } from "gsap";
 import Carousel from './components/Carousel/carousel';
+import HeroRoot from './components/hero-section/HeroRoot';
 
 gsap.registerPlugin(useGSAP);
 
@@ -67,9 +68,9 @@ function App() {
     ref={container} 
     className="flex flex-col justify-center items-center h-screen"
     >
-      <h1>Landing Page da Code</h1>
+      {/* <h1>Landing Page da Code</h1> */}
       {/* Teste do carousel. */}
-      <Carousel
+      {/* <Carousel
         images={cadeirasData}
         autoPlay={false}
         interval={5000}
@@ -83,7 +84,8 @@ function App() {
         className="px-6 py-3 text-xl bg-purple-900 text-white rounded"
       >
         Click
-      </button>
+      </button> */}
+      <HeroRoot onAnimationComplete={() => console.log('Acabou!')} />
       
     </div>
   );
