@@ -15,7 +15,7 @@ export default function HeroLogo({ src, alt, direction = "left", duration = 1, d
         className="absolute inset-0 w-full h-full object-cover z-0"
       />
       <h1 className="relative z-10 text-6xl md:text-9xl font-black text-white tracking-tighter uppercase px-4">
-        TEXTO VAZADO
+        CODE[]
       </h1>
     </div>
   );

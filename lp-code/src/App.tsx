@@ -5,7 +5,8 @@ import { Footer } from "./components/ui/footer/Footer"
 import { FileExplorer } from "./components/ui/file-explorer/FileExplorer"
 import { Container } from "./components/ui/container/Container"
 import bg from "./assets/BG.png"
-import { useRef } from 'react'
+import { useState, useEffect } from 'react'
+import HeroRoot from "./components/hero-section/HeroRoot";
 import { useGSAP } from '@gsap/react'
 import { gsap } from "gsap";
 import Carousel from './components/Carousel/carousel';
@@ -21,11 +22,44 @@ import Carousel from './components/Carousel/carousel';
  *    • Footer
  */
 function App() {
+
+  const [showIntro, setShowIntro] = useState(true);
+
+  // efeito pra travar e resetar scroll
+  useEffect(() => {
+    if (showIntro) {
+      window.scrollTo(0, 0);
+      document.body.style.overflow = "hidden";
+    } else {
+      // libera scroll quando a intro termina
+      document.body.style.overflow = "unset";
+    }
+
+    // Cleanup
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [showIntro]);
+  
   return (
     <div className="text-white">
+
+      {/* renderização condicional da intro */}
+      {showIntro && (
+        <HeroRoot 
+          onAnimationComplete={() => {
+            console.log("Transição concluída!");
+            setShowIntro(false); // Remove a intro da tela liberando o site
+          }} 
+        />
+      )}
       
       {/* NAVBAR FIXO */}
-      <Navbar />
+      <Navbar 
+        className={`transition-all duration-500 ${
+          showIntro ? "opacity-0 pointer-events-none -translate-y-4" : "opacity-100 pointer-events-none-unset translate-y-0" 
+        }`} 
+      />
 
       {/* HERO */}
       <section className="relative h-screen flex items-start pt-12 justify-center text-center overflow-hidden">

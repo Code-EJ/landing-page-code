@@ -69,7 +69,7 @@ export default function HeroRoot({ onAnimationComplete, className = "" }: HeroRo
   return (
     <section 
       ref={containerRef}
-      className={`relative w-full min-h-screen bg-neutral-950 text-white overflow-hidden ${className}`}
+      className={`fixed inset-0 w-full h-screen bg-neutral-950 text-white overflow-hidden z-50 ${className}`}
     >
       <button 
         onClick={onAnimationComplete}
