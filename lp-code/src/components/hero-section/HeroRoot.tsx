@@ -28,41 +28,51 @@ export default function HeroRoot({ onAnimationComplete, className = "" }: HeroRo
     left: { x: "-100%", y: "0%" },
     right: { x: "100%", y: "0%" },
     };
+    //detector de media query
+    const mm = gsap.matchMedia();
 
     // posição inicial do logo e do fundo
-    gsap.set(logoContainer, { ...startPositions[direction], opacity: 0 });
-    gsap.set(bgImage, { scale: 1.2 });
+    // Se o usuário não tem restrição de movimento, roda a animação
+    mm.add("(prefers-reduced-motion: no-preference)", () => {
+      gsap.set(logoContainer, { ...startPositions[direction], opacity: 0 });
+      gsap.set(bgImage, { scale: 1.2 });
 
-    // Timeline Principal (Animation Controller)
-    const tl = gsap.timeline({
-      onComplete: () => {
-        if (onAnimationComplete) onAnimationComplete();
-      }
+      // Timeline Principal (Animation Controller)
+      const tl = gsap.timeline({
+        onComplete: () => {
+          if (onAnimationComplete) onAnimationComplete();
+        }
+      });
+      
+      // Sequência animações
+      tl.to(bgImage, {
+        scale: 1,
+        duration: 2,
+        ease: "power2.out"
+      })
+      .to(logoContainer, {
+        x: "0%",
+        y: "0%",
+        opacity: 1,
+        duration: durationProp,
+        ease: "power4.out"
+      }, "-=1")
+      .to(containerRef.current, {
+        opacity: 0,
+        duration: 0.8,
+        delay: 1.5,
+        ease: "power2.inOut"
+      });
     });
 
-    // Sequência animações
-    tl.to(bgImage, {
-      scale: 1,
-      duration: 2,
-      ease: "power2.out"
-    })
-    .to(logoContainer, {
-      x: "0%",
-      y: "0%",
-      opacity: 1,
-      duration: durationProp,
-      ease: "power4.out"
-    }, "-=1") // Começa 1 segundo antes do fundo terminar (overlap)
-    .to(containerRef.current, {
-      opacity: 0,
-      duration: 0.8,
-      delay: 1.5,
-      ease: "power2.inOut"
+    // Se usuário preferir movimento reduzido, pula a introdução direto e chama o callback
+    mm.add("(prefers-reduced-motion: reduce)", () => {
+      if (onAnimationComplete) onAnimationComplete();
     });
 
-    // Cleanup para evitar vazamento de memória se o componente desmontar no meio
+    // cleanup limpa regras do matchMedia
     return () => {
-      tl.kill();
+      mm.revert();
     };
   }, [onAnimationComplete]);
 
