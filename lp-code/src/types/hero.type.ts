@@ -32,6 +32,8 @@ export interface HeroLogoProps {
   delay?: number;
   /** URL ou caminho da imagem de fundo */
   src: string;
+  /** Imagem usada para "vazar" o texto, revelando o fundo através das letras */
+  cutoutSrc: string;
   /** Texto alternativo para acessibilidade (essencial para leitores de tela) */
   alt: string;
 }

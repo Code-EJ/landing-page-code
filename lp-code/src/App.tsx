@@ -5,7 +5,7 @@ import { Footer } from "./components/ui/footer/Footer"
 import { FileExplorer } from "./components/ui/file-explorer/FileExplorer"
 import { Container } from "./components/ui/container/Container"
 import bg from "./assets/BG.png"
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import HeroRoot from "./components/hero-section/HeroRoot";
 import { useGSAP } from '@gsap/react'
 import { gsap } from "gsap";
@@ -23,37 +23,18 @@ import Carousel from './components/Carousel/carousel';
  */
 function App() {
 
-  const [showIntro, setShowIntro] = useState(true);
+  const [showIntro, setShowIntro] = useState(true);// controla só a visibilidade do navbar durante a intro
 
-  // efeito pra travar e resetar scroll
-  useEffect(() => {
-    if (showIntro) {
-      window.scrollTo(0, 0);
-      document.body.style.overflow = "hidden";
-    } else {
-      // libera scroll quando a intro termina
-      document.body.style.overflow = "unset";
-    }
-
-    // Cleanup
-    return () => {
-      document.body.style.overflow = "unset";
-    };
-  }, [showIntro]);
-  
   return (
     <div className="text-white">
 
-      {/* renderização condicional da intro */}
-      {showIntro && (
-        <HeroRoot 
-          onAnimationComplete={() => {
-            console.log("Transição concluída!");
-            setShowIntro(false); // Remove a intro da tela liberando o site
-          }} 
-        />
-      )}
-      
+      {/* Hero animado: fica pinado no topo e sua animação é conduzida pelo scroll da página */}
+      <HeroRoot
+        onAnimationComplete={() => {
+          setShowIntro(false); // scroll passou da intro, libera o navbar
+        }}
+      />
+
       {/* NAVBAR FIXO */}
       <Navbar 
         className={`transition-all duration-500 ${

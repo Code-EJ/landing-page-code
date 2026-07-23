@@ -1,12 +1,14 @@
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import type { HeroRootProps } from "../../types/hero.type.ts";
 import HeroImage from "./HeroImage";
 import HeroLogo from "./HeroLogo";
 import fotoFundo from '../../assets/images/fundoHeroSection.png';
 import zeroum from '../../assets/images/ZeroUmHeroSection.png';
-import cadeira from '../../assets/images/cadeira1.webp';
+
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 export default function HeroRoot({ onAnimationComplete, className = "" }: HeroRootProps) {
 
@@ -17,7 +19,6 @@ export default function HeroRoot({ onAnimationComplete, className = "" }: HeroRo
   useGSAP(() => {
 
     if ( !containerRef.current || !imageRef.current || !logoRef.current) { return; }
-
     const mm = gsap.matchMedia();
 
     mm.add(
@@ -28,38 +29,37 @@ export default function HeroRoot({ onAnimationComplete, className = "" }: HeroRo
       (context) => {
 
         if (context.conditions?.reduce) {
+          gsap.set(imageRef.current, { scale: 1 });
+          gsap.set(logoRef.current, { yPercent: 0, opacity: 1 });
           onAnimationComplete?.();
           return;
         }
 
-        gsap.set(imageRef.current, { scale: 1.2, force3D: true });
-
+        gsap.set(imageRef.current, { scale: 1.15, force3D: true });
         gsap.set(logoRef.current, { yPercent: 100, opacity: 0, force3D: true });
 
+        // timeline sem autoplay
+        // animação controlada pelo scroll(scrub)
         const tl = gsap.timeline({
-          defaults: {
-            ease: "power3.out",
-          },
-          onComplete() {
-            onAnimationComplete?.();
+          defaults: { ease: "none" },
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top top",
+            end: "+=200%",
+            scrub: 1,
+            pin: true,
+            anticipatePin: 1,
+            onLeave: () => onAnimationComplete?.(),
           },
         });
 
-        tl.to(imageRef.current, { scale: 1, duration: 2 })
-
-        .to(
-          logoRef.current,
-          {
-            yPercent: 0,
-            opacity: 1,
-            duration: 1.2,
-          },
-          "-=1"
-        )
-
-        .to(containerRef.current, { opacity: 0, duration: .8, delay: 1.5 });
-
-        return () => tl.kill();
+        tl.to(imageRef.current, { scale: 1, duration: 0.2 }, 0)
+          .to(logoRef.current, { yPercent: 0, opacity: 1, duration: 0.45 }, 0.15)
+          .to(containerRef.current, { scale: 0.94, opacity: 0.85, duration: 0.35 }, 0.65);
+        return () => {
+          tl.scrollTrigger?.kill();
+          tl.kill();
+        };
       }
     );
 
@@ -72,15 +72,8 @@ export default function HeroRoot({ onAnimationComplete, className = "" }: HeroRo
   return (
     <section
       ref={containerRef}
-      className={` fixed inset-0 w-full h-screen overflow-hidden bg-black z-50 ${className} `}
+      className={` relative w-full h-screen overflow-hidden bg-black ${className} `}
     >
-
-      <button
-        onClick={onAnimationComplete}
-        className=" absolute top-6 right-6 z-50 rounded-full border border-white/20 bg-white/10 backdrop-blur px-4 py-2 text-xs uppercase tracking-widest transition hover:bg-white/20"
-      >
-        Skip Intro →
-      </button>
 
       <HeroImage
         ref={imageRef}
@@ -91,6 +84,7 @@ export default function HeroRoot({ onAnimationComplete, className = "" }: HeroRo
       <HeroLogo
         ref={logoRef}
         src={zeroum}
+        cutoutSrc={fotoFundo}
         alt="Textura binária"
       />
 
