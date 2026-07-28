@@ -48,7 +48,7 @@ const HeroLogo = forwardRef<HTMLDivElement, ExtendedHeroLogoProps>(
               transformOrigin: "top center",
             }}
           >
-            TEXTO
+            CODE[]
           </h1>
         </div>
       </div>

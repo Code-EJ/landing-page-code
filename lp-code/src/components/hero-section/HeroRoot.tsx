@@ -50,11 +50,11 @@ export default function HeroRoot({ onAnimationComplete, className = "" }: HeroRo
         gsap.set(logoRef.current, { yPercent: 100, opacity: 0, force3D: true });
 
         // texto começa deitado (90 graus) e invisível
-        gsap.set(textRef.current, { 
-          rotateX: 90, 
-          opacity: 0, 
-          transformOrigin: "50% 0%", 
-          force3D: true 
+        gsap.set(textRef.current, {
+          rotateX: 90,
+          opacity: 0,
+          transformOrigin: "50% -650px",
+          force3D: true
         });
 
         // --- TIMELINE DE SCROLL ---
@@ -82,7 +82,7 @@ export default function HeroRoot({ onAnimationComplete, className = "" }: HeroRo
             { 
               rotateX: 0,
               opacity: 1,
-              duration: 0.4,
+              duration: 0.5,
               ease: "power2.out"
             },
             0.45
@@ -112,7 +112,7 @@ export default function HeroRoot({ onAnimationComplete, className = "" }: HeroRo
     >
       <HeroImage
         ref={imageRef}
-        src={ftCadeiras}
+        src={ftFundo}
         alt="Imagem de fundo"
       />
 
