@@ -1,29 +1,59 @@
 import { forwardRef } from "react";
 import type { HeroLogoProps } from "../../types/hero.type";
 
-const HeroLogo = forwardRef<HTMLDivElement, HeroLogoProps>(
-  ({ src, alt, cutoutSrc }, ref) => {
+interface ExtendedHeroLogoProps extends HeroLogoProps {
+  textRef?: React.Ref<HTMLHeadingElement>;
+}
+
+const HeroLogo = forwardRef<HTMLDivElement, ExtendedHeroLogoProps>(
+  ({ src, alt, cutoutSrc, textRef }, ref) => {
     return (
       <div
         ref={ref}
-        className=" absolute inset-0 z-10 flex items-center justify-center overflow-hidden select-none mix-blend-multiply will-change-transform"
+        className="absolute inset-0 z-10 flex items-center justify-center overflow-hidden select-none mix-blend-multiply will-change-transform"
       >
+        {/* overlay números */}
         <img
           src={src}
           alt={alt}
-          className=" absolute inset-0 w-full h-full object-cover pointer-events-none"
+          className="absolute inset-0 w-full h-full object-cover pointer-events-none"
         />
 
-        {/* texto vazado */}
-        <h1
-          className=" relative z-20 bg-cover bg-center bg-clip-text text-transparent text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black uppercase tracking-tight font-mono px-4 text-center "
-          style={{ backgroundImage: `url(${cutoutSrc})` }}
-        >
-          TEXTO
-        </h1>
+        {/* Container de Perspectiva 3D */}
+        <div className="relative z-20 flex w-full items-center justify-center [perspective:1200px] px-2">
+          <h1
+            ref={textRef}
+            className="
+              bg-cover 
+              bg-center 
+              bg-clip-text 
+              text-transparent 
+              text-7xl 
+              sm:text-8xl 
+              md:text-[11rem] 
+              lg:text-[14rem] 
+              xl:text-[17rem] 
+              font-black 
+              uppercase 
+              tracking-tighter 
+              font-mono 
+              text-center 
+              whitespace-nowrap 
+              leading-none 
+              will-change-transform
+              drop-shadow-2xl
+            "
+            style={{
+              backgroundImage: `url(${cutoutSrc})`,
+              transformOrigin: "top center",
+            }}
+          >
+            TEXTO
+          </h1>
+        </div>
       </div>
     );
-  }
+  },
 );
 
 export default HeroLogo;
