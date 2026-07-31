@@ -5,7 +5,7 @@ import { Footer } from "./components/ui/footer/Footer"
 import { FileExplorer } from "./components/ui/file-explorer/FileExplorer"
 import { Container } from "./components/ui/container/Container"
 import bg from "./assets/BG.png"
-import { useRef } from 'react'
+import HeroRoot from "./components/hero-section/HeroRoot";
 import { useGSAP } from '@gsap/react'
 import { gsap } from "gsap";
 import Carousel from './components/Carousel/carousel';
@@ -21,10 +21,14 @@ import Carousel from './components/Carousel/carousel';
  *    • Footer
  */
 function App() {
+
   return (
     <div className="text-white">
-      
-      {/* NAVBAR FIXO */}
+
+      {/* Hero animado: fica pinado no topo e sua animação é conduzida pelo scroll da página */}
+      <HeroRoot onAnimationComplete={() => {}} />
+
+      {/* NAVBAR FIXA */}
       <Navbar />
 
       {/* HERO */}
