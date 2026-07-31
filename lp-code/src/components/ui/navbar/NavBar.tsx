@@ -14,7 +14,7 @@ export function Navbar({ className }: Props) {
   return (
     <nav
       className={cn(
-        "sticky top-0 z-50 w-full px-2 text-white",
+        "fixed top-0 z-50 w-full px-2 text-white",
         className
       )}
     >

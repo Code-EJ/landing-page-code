@@ -5,7 +5,6 @@ import { Footer } from "./components/ui/footer/Footer"
 import { FileExplorer } from "./components/ui/file-explorer/FileExplorer"
 import { Container } from "./components/ui/container/Container"
 import bg from "./assets/BG.png"
-import { useState } from 'react'
 import HeroRoot from "./components/hero-section/HeroRoot";
 import { useGSAP } from '@gsap/react'
 import { gsap } from "gsap";
@@ -23,24 +22,14 @@ import Carousel from './components/Carousel/carousel';
  */
 function App() {
 
-  const [showIntro, setShowIntro] = useState(true);// controla só a visibilidade do navbar durante a intro
-
   return (
     <div className="text-white">
 
       {/* Hero animado: fica pinado no topo e sua animação é conduzida pelo scroll da página */}
-      <HeroRoot
-        onAnimationComplete={() => {
-          setShowIntro(false); // scroll passou da intro, libera o navbar
-        }}
-      />
+      <HeroRoot onAnimationComplete={() => {}} />
 
-      {/* NAVBAR FIXO */}
-      <Navbar 
-        className={`transition-all duration-500 ${
-          showIntro ? "opacity-0 pointer-events-none -translate-y-4" : "opacity-100 pointer-events-none-unset translate-y-0" 
-        }`} 
-      />
+      {/* NAVBAR FIXA */}
+      <Navbar />
 
       {/* HERO */}
       <section className="relative h-screen flex items-start pt-12 justify-center text-center overflow-hidden">

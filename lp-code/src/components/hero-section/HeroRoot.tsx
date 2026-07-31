@@ -8,7 +8,6 @@ import HeroLogo from "./HeroLogo";
 
 import type { HeroRootProps } from "../../types/hero.type";
 
-import ftCadeiras from "../../assets/images/cadeira1.webp";
 import zeroum from "../../assets/images/ZeroUmHeroSection.png";
 import ftFundo from "../../assets/images/fundoHeroSection.png";
 import cinza from "../../assets/images/fundo-cinza.avif";
@@ -36,20 +35,19 @@ export default function HeroRoot({ onAnimationComplete, className = "" }: HeroRo
       (context) => {
 
         if (context.conditions?.reduce) {
-          gsap.set(imageRef.current, { scale: 1 });
-          gsap.set(logoRef.current, { yPercent: 0, opacity: 1 });
           gsap.set(textRef.current, { rotateX: 0, opacity: 1 });
           onAnimationComplete?.();
           return;
         }
 
-        // imagem de fundo com zoom leve
-        gsap.set(imageRef.current, { scale: 1.15, force3D: true });
-        
-        // overlay de números transparentes(zeroum)
-        gsap.set(logoRef.current, { yPercent: 100, opacity: 0, force3D: true });
-
-        // texto começa deitado (90 graus) e invisível
+        /*
+        texto começa deitado (90 graus) e invisível.
+        transformOrigin bem acima do elemento simula um pêndulo pendurado
+        fora da tela: girar em torno desse eixo distante faz o texto se
+        aproximar da câmera (parece maior na base das
+        letras) e descer, encolhendo ao tamanho normal conforme se
+        aproxima de rotateX 0.
+        */
         gsap.set(textRef.current, {
           rotateX: 90,
           opacity: 0,
@@ -63,8 +61,8 @@ export default function HeroRoot({ onAnimationComplete, className = "" }: HeroRo
           scrollTrigger: {
             trigger: containerRef.current,
             start: "top top",
-            end: "+=300%", // aumenta curso do scroll
-            scrub: 1,      // sincroniza com scroll
+            end: "+=150%",
+            scrub: 1,
             pin: true,
             anticipatePin: 1,
             onLeave: () => onAnimationComplete?.(),
@@ -72,27 +70,23 @@ export default function HeroRoot({ onAnimationComplete, className = "" }: HeroRo
         });
 
         tl
-          // Ajusta escala do fundo e sobe a imagem dos números 'zeroum'
-          .to(imageRef.current, { scale: 1, duration: 0.25 }, 0)
-          .to(logoRef.current, { yPercent: 0, opacity: 1, duration: 0.35 }, 0.1)
-
-          // texto caindo sobre a tela com efeito de rotação 3D
+          // texto caindo sobre a tela com efeito de rotação 3D (pêndulo)
           .to(
             textRef.current,
             { 
               rotateX: 0,
               opacity: 1,
-              duration: 0.5,
+              duration: 0.55,
               ease: "power2.out"
             },
-            0.45
+            0
           )
 
-          // pausa curta + fade out da intro para revelar a Home
+          // vai direto pra Home sem pausa
           .to(
             containerRef.current, 
-            { scale: 0.94, opacity: 0, duration: 0.35 }, 
-            0.95
+            { scale: 0.94, opacity: 0, duration: 0.3 }, 
+            0.6
           );
 
         return () => {
