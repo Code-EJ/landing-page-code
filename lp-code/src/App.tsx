@@ -9,6 +9,7 @@ import HeroRoot from "./components/hero-section/HeroRoot";
 import { useGSAP } from '@gsap/react'
 import { gsap } from "gsap";
 import Carousel from './components/Carousel/carousel';
+import About from './components/About/About';
 
 /**
  * App Root
