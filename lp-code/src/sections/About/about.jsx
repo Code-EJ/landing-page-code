@@ -1,6 +1,11 @@
-// quando a issue #99 tiver pronta, descomentar a linha abaixo
-// import Container from 'lp-code/components/container'; 
-
+/**
+ * @description
+ * Componente responsável por renderizar a seção "Sobre Nós" (About Us) da landing page.
+ * Apresenta a missão/textos institucionais e um container visual para a mascote do projeto.
+ * @returns {JSX.Element} Estrutura da seção About.
+ */
+export default function About() {
+// ... resto do seu código
 export default function About() {
   return (
     <section id="about" className="w-full py-16 md:py-24 bg-[#3C1D47] border-b border-[#5F2E78]">
