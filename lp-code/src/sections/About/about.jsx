@@ -5,11 +5,8 @@
  * @returns {JSX.Element} Estrutura da seção About.
  */
 export default function About() {
-// ... resto do seu código
-export default function About() {
   return (
     <section id="about" className="w-full py-16 md:py-24 bg-[#3C1D47] border-b border-[#5F2E78]">
-        {/* Fundo escuro da paleta e borda sutil */}
         
         {/* substituir esta div pelo <container> quando for mergeado */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
